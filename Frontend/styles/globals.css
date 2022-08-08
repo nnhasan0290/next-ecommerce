@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+body {
+  font-family: "manrope", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #888;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+@layer components {
+  .big-heading {
+    font-size: 30px;
+    font-weight: 700;
+    color: #081828;
+    position: relative;
+    padding: 10px 0;
+
+  }
+  .big-heading:after{
+    content: "";
+    height: 2px;
+    width: 60px;
+    position: absolute;
+    bottom: 0;
+    background-color: #0167f3;
+    left: 50%;
+    transform: translateX(-50%)
+  }
+  .semi-heading {
+    @apply text-[#081828] text-[16px] font-semibold   tracking-wider cursor-pointer hover:text-[#0167f3] transition-all duration-500 ease-in-out;
+  }
+}
