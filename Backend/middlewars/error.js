@@ -1,7 +1,7 @@
 export default (err, req, res, nex) => {
-  console.log("This errorhandler is running");
-  res.json({
+  console.log(err.message);
+  res.status(500).json({
     success: false,
-    error: err,
+    error: err.message,
   });
 };

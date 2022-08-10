@@ -5,10 +5,10 @@ import {
 } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { productReducer } from "./reducers/productReducers";
+import { newProductReducer } from "./reducers/productReducers";
 
 const rootReducer = combineReducers({
-  products: productReducer,
+  newProducts: newProductReducer,
 });
 
 const middleware = [thunk];

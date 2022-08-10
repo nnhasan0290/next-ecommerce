@@ -3,7 +3,7 @@ import {
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_REQ,
 } from "../constants/productCons";
-export const productReducer = (state = { name: "hasan" }, action) => {
+export const newProductReducer = (state = { name: "hasan" }, action) => {
   switch (action.type) {
     case CREATE_PRODUCT_REQ:
       return {
@@ -12,13 +12,14 @@ export const productReducer = (state = { name: "hasan" }, action) => {
       };
       break;
     case CREATE_PRODUCT_SUCCESS:
-      console.log(action.payload);
       return {
         loading: false,
-        data: action.payload,
+        data: action.payload.product,
+        success: action.payload.success,
       };
       break;
     case CREATE_PRODUCT_FAIL:
+      console.log(action.payload);
       return {
         loading: false,
         error: action.payload,

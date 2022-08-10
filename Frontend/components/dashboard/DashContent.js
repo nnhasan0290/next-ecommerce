@@ -3,8 +3,9 @@ import {
   CurrencyDollarIcon,
   DocumentTextIcon,
 } from "@heroicons/react/outline";
+import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { creatingProduct } from "../../redux/actions/productAction";
 
 const DashContent = () => {
@@ -15,6 +16,8 @@ const DashContent = () => {
   const [desc, setDesc] = useState("");
   const [cat, setCat] = useState("");
   const dispatch = useDispatch();
+  const state = useSelector((state) => state.newProducts);
+  console.log(state);
 
   //Methods ===========================
   const fileUpload = (e) => {
@@ -39,14 +42,15 @@ const DashContent = () => {
     const myForm = new FormData();
     myForm.set("name", name);
     myForm.set("price", price);
-    myForm.set("cat", cat);
-    myForm.set("desc", desc);
+    myForm.set("category", cat);
+    myForm.set("description", desc);
     myForm.set("stock", stock);
     inputImg.forEach((each) => {
       myForm.append("images", each);
     });
     dispatch(creatingProduct(myForm));
   };
+
   return (
     <div className="sm:w-[80%] flex justify-center items-center sm:float-right bg-[#f9f9f9] ">
       <div className="px-10 py-3 border shadow-3xl">
@@ -94,10 +98,10 @@ const DashContent = () => {
               onChange={(e) => setCat(e.target.value)}
               className="capitalize outline-none"
             >
-              <option value="Select">Select</option>
+              <option value="">Select</option>
               <option value="laptop">Laptop</option>
               <option value="desktop">desktop</option>
-              <option value="three">Electronics</option>
+              <option value="Electronics">Electronics</option>
               <option value="four">four</option>
             </select>
           </div>

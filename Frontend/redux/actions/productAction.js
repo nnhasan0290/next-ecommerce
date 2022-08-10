@@ -6,7 +6,6 @@ import {
 import axios from "axios";
 export const creatingProduct = (myForm) => async (dispatch) => {
   try {
-    console.log(myForm.get("name"));
     dispatch({ type: CREATE_PRODUCT_REQ });
     const config = {
       headers: { "Content-Type": "multipart/form-data" },
@@ -16,8 +15,12 @@ export const creatingProduct = (myForm) => async (dispatch) => {
       myForm,
       config
     );
+    console.log(data);
     dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: CREATE_PRODUCT_FAIL, payload: error });
+    dispatch({
+      type: CREATE_PRODUCT_FAIL,
+      payload: error.response.data.error,
+    });
   }
 };

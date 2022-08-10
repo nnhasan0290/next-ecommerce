@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import HomeProducts from "../components/Homepage/HomeProducts";
 
 export default function Home() {
-  const state = useSelector(state => state.products);
-  console.log(state);
   return (
     <div>
       <Head>
