@@ -4,6 +4,8 @@ import {
   DocumentTextIcon,
 } from "@heroicons/react/outline";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { creatingProduct } from "../../redux/actions/productAction";
 
 const DashContent = () => {
   const [inputImg, setInputImg] = useState([]);
@@ -12,6 +14,7 @@ const DashContent = () => {
   const [price, setPrice] = useState(0);
   const [desc, setDesc] = useState("");
   const [cat, setCat] = useState("");
+  const dispatch = useDispatch();
 
   //Methods ===========================
   const fileUpload = (e) => {
@@ -34,15 +37,15 @@ const DashContent = () => {
   const submitAndcreateProduct = (e) => {
     e.preventDefault();
     const myForm = new FormData();
-    form.set("name", name);
-    form.set("price", price);
-    form.set("cat", cat);
-    form.set("desc", desc);
-    form.set("stock", stock);
+    myForm.set("name", name);
+    myForm.set("price", price);
+    myForm.set("cat", cat);
+    myForm.set("desc", desc);
+    myForm.set("stock", stock);
     inputImg.forEach((each) => {
-      form.append("images", each);
+      myForm.append("images", each);
     });
-    console.log(myForm);
+    dispatch(creatingProduct(myForm));
   };
   return (
     <div className="sm:w-[80%] flex justify-center items-center sm:float-right bg-[#f9f9f9] ">

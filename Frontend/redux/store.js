@@ -5,15 +5,13 @@ import {
 } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { productReducer } from "./reducers/productReducers";
 
-
-const productReducer = (state = { name: "hasan" }, action) => {
-  return { name: "nazmul" };
-};
-const middleware = [thunk];
 const rootReducer = combineReducers({
   products: productReducer,
 });
+
+const middleware = [thunk];
 
 const store = configureStore(
   { reducer: rootReducer },
