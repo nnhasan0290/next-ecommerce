@@ -1,11 +1,11 @@
 import StarRatingComponent from "react-star-rating-component";
 import {ShoppingCartIcon} from "@heroicons/react/outline";
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({ product,lgBasis }) => {
   const { name, category, images, reviews } = product;
 
   return (
-    <div className="basis-[100%] sm:basis-1/2 lg:basis-1/4 ">
+    <div className={`basis-[100%] sm:basis-1/2 lg:basis-${lgBasis}`}>
       <div className="box-border p-2  my-2 border-[#eee] shadow-3xl mx-3 rounded-sm bg-white group">
         <div className="overflow-hidden relative">
           <img
@@ -14,7 +14,7 @@ const SingleProduct = ({ product }) => {
             className="min-w-[100%] h-[300px]"
           />
           <span className="absolute top-0 left-0 bg-[#f73232] text-white py-1 text-sm font-medium px-2 rounded-sm">-25%</span>
-          <button className="bg-[#0167f3] p-3 flex items-center text-white space-x-2 font-medium text-md absolute left-[50%] transform translate-x-[-50%] bottom-[-60px] group-hover:bottom-[30px] transition-all duration-500 ease-in-out rounded hover:bg-[#081828]">
+          <button className="bg-[#0167f3] p-3 flex items-center text-white space-x-2 font-medium text-md absolute left-[50%] transform translate-x-[-50%] bottom-[-100%] group-hover:bottom-[30px] transition-all duration-500 ease-in-out rounded hover:bg-[#081828]">
             <ShoppingCartIcon className="h-5"/>
             <p className="tracking-tight"> Add To Cart</p>
            </button>

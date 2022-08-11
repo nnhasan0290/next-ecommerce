@@ -1,8 +1,6 @@
-import { Fragment } from "react";
-import SingleProduct from "./SingleProduct";
+import SingleProduct from "../Homepage/SingleProduct";
 
-const HomeProducts = () => {
-  const products = [
+const products = [
     {
       name: "product no 1",
       id: 1234,
@@ -69,25 +67,19 @@ const HomeProducts = () => {
       initialPrce: 400,
     },
   ];
-  return (
-    <Fragment>
-      <div className="bg-[#f9f9f9] py-10 px-[20px] md:px-[45px]">
-        <div className="text-center w-[40%] m-auto">
-          <h2 className="big-heading">Trending Products</h2>
-          <p className="py-6">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit gravida
-            viverra porttitor euismod justo, duis etiam eu eros mauris commodo
-            fringilla
-          </p>
+
+const AllProduct = () => {
+    return(
+        <div className="sm:w-[80%] border">
+            <div className="box-border flex flex-wrap my-10 w-full">
+              {
+                products.map((each) =>(
+                    <SingleProduct key={each.id} product={each} lgBasis="1/3"/>
+                ))
+              }
+              </div>
+            <h2>Thiis is for all product and sort etc</h2>
         </div>
-        <div className="box-border flex flex-wrap my-10 w-full">
-          
-          {products.map((each) => (
-            <SingleProduct key={each.id} product={each} lgBasis="1/4"/>
-          ))}
-        </div>
-      </div>
-    </Fragment>
-  );
-};
-export default HomeProducts;
+    )
+}
+export default AllProduct;
