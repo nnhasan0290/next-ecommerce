@@ -1,9 +1,14 @@
-const Filtering = () => {
-    return(
-        <div className="sm:w-[20%] border">
+import Category from "./category";
+import PriceRange from "./PriceRange";
+import Search from "./Search";
 
-            <h2>This is the filtering area</h2>
-        </div>
-    )
-}
-export default Filtering
+const Filtering = () => {
+  return (
+    <div className="md:w-[25%] ">
+      <Search />
+      <Category />
+      <PriceRange />
+    </div>
+  );
+};
+export default Filtering;

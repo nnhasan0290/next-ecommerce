@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import SingleProduct from "./SingleProduct";
+import Heading from "./../Heading/Heading.js";
 
 const HomeProducts = () => {
   const products = [
@@ -71,6 +72,7 @@ const HomeProducts = () => {
   ];
   return (
     <Fragment>
+      <Heading />
       <div className="bg-[#f9f9f9] py-10 px-[20px] md:px-[45px]">
         <div className="text-center w-[40%] m-auto">
           <h2 className="big-heading">Trending Products</h2>
@@ -80,10 +82,13 @@ const HomeProducts = () => {
             fringilla
           </p>
         </div>
-        <div className="box-border flex flex-wrap my-10 w-full">
-          
+        <div className="box-border flex flex-wrap w-full my-10">
           {products.map((each) => (
-            <SingleProduct key={each.id} product={each} lgBasis="1/4"/>
+            <SingleProduct
+              key={each.id}
+              product={each}
+              lgBasis={"lg:basis-1/4"}
+            />
           ))}
         </div>
       </div>

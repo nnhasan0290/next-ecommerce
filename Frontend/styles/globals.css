@@ -9,6 +9,12 @@ body {
   color: #888;
   overflow-x: hidden;
   font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+.shoppingCartIcon:hover .show-cart {
+  padding: 50px;
+  display: none;
 }
 
 @layer components {
@@ -18,9 +24,8 @@ body {
     color: #081828;
     position: relative;
     padding: 10px 0;
-
   }
-  .big-heading:after{
+  .big-heading:after {
     content: "";
     height: 2px;
     width: 60px;
@@ -28,18 +33,27 @@ body {
     bottom: 0;
     background-color: #0167f3;
     left: 50%;
-    transform: translateX(-50%)
+    transform: translateX(-50%);
   }
   .semi-heading {
     @apply text-[#081828] text-[16px] font-semibold   tracking-wider cursor-pointer hover:text-[#0167f3] transition-all duration-500 ease-in-out;
   }
   .each-sidebar-item {
-    @apply cursor-pointer flex items-center space-x-1 hover:text-[#0167f3] transition-all duration-300 ease-in-out hover:scale-105 leading-8
+    @apply cursor-pointer flex items-center space-x-1 hover:text-[#0167f3] transition-all duration-300 ease-in-out hover:scale-105 leading-8;
   }
-  .input-parent{
-    @apply flex items-center border rounded-sm space-x-3 my-2 shadow-3xl px-2 py-2 capitalize bg-white
+  .input-parent {
+    @apply flex items-center px-2 py-2 my-2 space-x-3 capitalize bg-white border rounded-sm shadow-3xl;
   }
-  input{
-    @apply w-full h-10 focus:outline-none capitalize
+  input {
+    @apply w-full h-10 capitalize focus:outline-none;
+  }
+  .filtering {
+    @apply bg-white border rounded-sm p-7 mb-7 shadow-3xl;
+  }
+  .nav-list-item {
+    @apply list-none p-0 m-0 mr-5 text-[#081828] cursor-pointer h-full py-5;
+  }
+  .hamburger-span {
+    @apply w-[30px] h-[2px] my-[5px] bg-black block;
   }
 }
