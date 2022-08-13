@@ -15,6 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(upload.array());
 
+app.get("/", (req,res, next) => {
+    res.send({success:true})
+})
+
 app.use("/api", productRoutes);
 
 app.use(errorHandler);
