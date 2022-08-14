@@ -42,18 +42,24 @@ body {
     @apply cursor-pointer flex items-center space-x-1 hover:text-[#0167f3] transition-all duration-300 ease-in-out hover:scale-105 leading-8;
   }
   .input-parent {
-    @apply flex items-center px-2 py-2 my-2 space-x-3 capitalize bg-white border rounded-sm shadow-3xl;
+    @apply flex items-center px-2 py-2 my-2 space-x-3 capitalize bg-white rounded-sm border shadow-3xl;
   }
   input {
-    @apply w-full h-10 capitalize focus:outline-none;
+    @apply p-2 w-full h-10 capitalize focus:outline-none;
   }
   .filtering {
-    @apply bg-white border rounded-sm p-7 mb-7 shadow-3xl;
+    @apply p-7 mb-7 bg-white rounded-sm border shadow-3xl;
   }
   .nav-list-item {
     @apply list-none p-0 m-0 mr-5 text-[#081828] cursor-pointer h-full py-5;
   }
   .hamburger-span {
     @apply w-[30px] h-[2px] my-[5px] bg-black block;
+  }
+  .each-input{
+    @apply  lg:basis-1/2 flex-wrap p-2 
+  }
+  .text-input{
+    @apply border rounded-md w-full
   }
 }

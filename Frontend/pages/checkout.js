@@ -1,9 +1,9 @@
 import Loader from "../components/layout/Loader";
 import Head from "next/head";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 const Checkout = () => {
-  const data  = useSession();
-  console.log(data);
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <>
       <Head>

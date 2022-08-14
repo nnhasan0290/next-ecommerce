@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDatabase from "./config/database.js";
 import cors from "cors";
 import productRoutes from "./Routes/productRoutes.js";
+import userRoutes from "./Routes/userRoutes.js";
 import multer from "multer";
 import errorHandler from "./middlewars/error.js";
 
@@ -15,11 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(upload.array());
 
-app.get("/", (req,res, next) => {
-    res.send({success:true})
-})
+app.get("/", (req, res, next) => {
+  res.send({ success: true });
+});
 
 app.use("/api", productRoutes);
+app.use("/api", userRoutes);
 
 app.use(errorHandler);
 export default app;

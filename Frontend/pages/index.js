@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useSelector } from "react-redux";
 import HomeProducts from "../components/Homepage/HomeProducts";
 
 export default function Home() {
