@@ -8,7 +8,7 @@ const Register = () => {
       <Head>
         <title>Register</title>
       </Head>
-      <Heading/>s
+      <Heading/>
       <Registering />
     </>
   );

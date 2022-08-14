@@ -1,10 +1,14 @@
+import e from "cors";
 import { useState } from "react";
+
 const Registering = () => {
   const [fname, setFname] = useState("");
   const [lname, setlname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [confirmPass, setconfirmPass] = useState("");
+  const [inputImg, setInputImg] = useState("");
+
   //submit handler method ====================================
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,11 +19,25 @@ const Registering = () => {
     register_form.set("password", password);
     register_form.set("confirmPass", confirmPass);
   };
+
+  //file Upload ==============================================
+  const fileUpload = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      console.log(e.target.files);
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onload = (readerEvent) => {
+      setInputImg(readerEvent.target.result);
+    };
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#f9f9f9]">
       <div className="p-10 w-full bg-white border sm:w-1/2 shadow-3xl">
         <div className="p-2 my-5">
-          <h2 className="text-[22px] font-bold mb-[10px] leading-[1.2] hover:cursor-auto hover:text-[#081828] semi-heading">No Account? Register now</h2>
+          <h2 className="text-[22px] font-bold mb-[10px] leading-[1.2] hover:cursor-auto hover:text-[#081828] semi-heading">
+            No Account? Register now
+          </h2>
           <p className="mb-5">
             Registration takes less than a minute but it gives you full controll
             over your order{" "}
@@ -90,12 +108,43 @@ const Registering = () => {
               required
             />
           </div>
+          <div className="p-2 w-full">
+            <div className="">
+              <label className="basis-[200px]" htmlFor="img">
+                Upload profile img:
+              </label>
+              <div>
+                <div className="flex items-center">
+                  {
+                    inputImg && (
+                      <img
+                        src={inputImg}
+                        alt="input image"
+                        className="w-[60px] h-[60px] rounded-full mr-5"
+                      />
+                    )
+                  }
+                  <input
+                    onChange={fileUpload}
+                    className="text-transparent  file:p-1 file:w-full file:border-none file:bg-white file:text-[#081828] border"
+                    accept="image/png, image/gif, image/jpeg"
+                    type="file"
+                    name="profile-img"
+                    id="profile-img"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="bg-[#0167f3] text-white hover:bg-[#081828] w-full rounded-md m-2 transition-all duration-300 ease-linear">
             <input className="cursor-pointer" type="submit" value="Register" />
           </div>
         </form>
         <p className="my-2 text-center">
-          Already have an account? <a className="text-[#0167f3]" href="/signin">login now</a>
+          Already have an account?{" "}
+          <a className="text-[#0167f3]" href="/signin">
+            login now
+          </a>
         </p>
       </div>
     </div>
