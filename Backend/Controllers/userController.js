@@ -29,11 +29,18 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
   if (password !== user.password) {
     throw { message: "wrong user or password", statusCode: 400 };
   }
-  const token = jwt.sign({ id: user._id }, "secret");
+  const token = jwt.sign({ id: user._id }, "sssecret");
+  const options = {
+    expires: new Date(
+      Date.now() + 1 * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  };
 
-  res.status(200).cookie("token", token).json({
+  res.status(200).cookie("token", token,options).json({
     success: true,
     user,
+    token,
   });
 });
 

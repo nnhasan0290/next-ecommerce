@@ -35,6 +35,8 @@ export const loginUser = (myForm) => async (dispatch) => {
     const config = {
       header: {
         "Content-Type": "multipart/form-data",
+        withCredentials: true,
+        credentials: "include",
       },
     };
     const { data } = await axios.post(
@@ -54,8 +56,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_REQ });
 
     const { data } = await axios.get(
-      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us60.gitpod.io/api/user/load",
-      { withCredentials: true }
+      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us60.gitpod.io/api/user/load"
     );
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });

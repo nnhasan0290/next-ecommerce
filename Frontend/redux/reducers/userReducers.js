@@ -47,6 +47,7 @@ export const loginReducer = (state = { }, action) => {
         loading: false,
         data: action.payload.user,
         success: action.payload.success,
+        token: action.payload.token
       };
     case LOGIN_USER_FAILED:
       return {

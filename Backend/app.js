@@ -12,9 +12,10 @@ const app = express();
 const upload = multer();
 dotenv.config({ path: "Backend/config/.env" });
 connectDatabase();
+
+
 app.use(express.json());
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
+
 app.use(cors());
 app.use(upload.array());
 
@@ -23,6 +24,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/api", productRoutes);
+app.use(cookieParser());
 app.use("/api", userRoutes);
 
 app.use(errorHandler);
