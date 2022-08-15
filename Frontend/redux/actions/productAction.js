@@ -11,7 +11,7 @@ export const creatingProduct = (myForm) => async (dispatch) => {
       headers: { "Content-Type": "multipart/form-data" },
     };
     const { data } = await axios.post(
-      "http://localhost:3001/api/product/create",
+      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us60.gitpod.io//api/product/create",
       myForm,
       config
     );

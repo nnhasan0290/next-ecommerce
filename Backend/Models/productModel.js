@@ -39,6 +39,32 @@ const Product = mongoose.model(
       type: String,
       required: [true, "category is a required field"],
     },
+    user: {
+      type: String,
+      ref: "User",
+      required: [true, "plese enter the user"],
+    },
+    reviews: [
+      {
+        userId: {
+          type: mongoose.Schema.ObjectId,
+          ref: "User",
+          required: true,
+        },
+        rating: {
+          type: Number,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        comment: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   })
 );
 

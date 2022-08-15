@@ -6,9 +6,11 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { newProductReducer } from "./reducers/productReducers";
+import { newUserReducer } from "./reducers/userReducers";
 
 const rootReducer = combineReducers({
   newProducts: newProductReducer,
+  newUser: newUserReducer,
 });
 
 const middleware = [thunk];

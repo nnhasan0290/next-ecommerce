@@ -1,5 +1,7 @@
-import e from "cors";
+
 import { useState } from "react";
+import { createUserAction } from "../../redux/actions/userAction";
+import {useDispatch, useSelector} from "react-redux";
 
 const Registering = () => {
   const [fname, setFname] = useState("");
@@ -8,6 +10,10 @@ const Registering = () => {
   const [password, setpassword] = useState("");
   const [confirmPass, setconfirmPass] = useState("");
   const [inputImg, setInputImg] = useState("");
+
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.newUser);
+  console.log(state);
 
   //submit handler method ====================================
   const submitHandler = (e) => {
@@ -18,6 +24,8 @@ const Registering = () => {
     register_form.set("email", email);
     register_form.set("password", password);
     register_form.set("confirmPass", confirmPass);
+    register_form.set("image", inputImg);
+    dispatch(createUserAction(register_form));
   };
 
   //file Upload ==============================================
@@ -92,7 +100,7 @@ const Registering = () => {
                 setpassword(e.target.value);
               }}
               className="text-input"
-              type="text"
+              type="password"
               required
             />
           </div>
@@ -104,7 +112,7 @@ const Registering = () => {
                 setconfirmPass(e.target.value);
               }}
               className="text-input"
-              type="text"
+              type="password"
               required
             />
           </div>
