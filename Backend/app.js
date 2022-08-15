@@ -6,12 +6,14 @@ import productRoutes from "./Routes/productRoutes.js";
 import userRoutes from "./Routes/userRoutes.js";
 import multer from "multer";
 import errorHandler from "./middlewars/error.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const upload = multer();
 dotenv.config({ path: "Backend/config/.env" });
 connectDatabase();
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(upload.array());

@@ -6,11 +6,13 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { newProductReducer } from "./reducers/productReducers";
-import { newUserReducer } from "./reducers/userReducers";
+import { loadReducer, loginReducer, newUserReducer } from "./reducers/userReducers";
 
 const rootReducer = combineReducers({
   newProducts: newProductReducer,
   newUser: newUserReducer,
+  loginUser: loginReducer,
+  loadUser: loadReducer
 });
 
 const middleware = [thunk];

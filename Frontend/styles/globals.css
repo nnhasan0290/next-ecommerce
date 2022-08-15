@@ -45,7 +45,7 @@ body {
     @apply flex items-center px-2 py-2 my-2 space-x-3 capitalize bg-white rounded-sm border shadow-3xl;
   }
   input {
-    @apply p-2 w-full h-10 capitalize rounded-md border focus:outline-none;
+    @apply p-2 w-full h-10 capitalize rounded-md focus:outline-none;
   }
   .filtering {
     @apply p-7 mb-7 bg-white rounded-sm border shadow-3xl;

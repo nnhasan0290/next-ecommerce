@@ -1,7 +1,16 @@
 import Head from "next/head";
 import HomeProducts from "../components/Homepage/HomeProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { loadUser } from "../redux/actions/userAction";
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.loadUser);
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
+  console.log(user);
   return (
     <div>
       <Head>
