@@ -19,7 +19,7 @@ export const createUserAction = (myForm) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us60.gitpod.io/api/user/creating",
+      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us61.gitpod.io//api/user/creating",
       myForm,
       config
     );
@@ -40,7 +40,7 @@ export const loginUser = (myForm) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us60.gitpod.io/api/user/login",
+      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us61.gitpod.io/api/user/login",
       myForm,
       config
     );
@@ -56,7 +56,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_REQ });
 
     const { data } = await axios.get(
-      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us60.gitpod.io/api/user/load"
+      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us61.gitpod.io/api/user/load"
     );
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });
