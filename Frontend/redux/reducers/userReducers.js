@@ -4,6 +4,7 @@ import {
   CREATE_USER_SUCCESS,
   LOAD_USER_REQ,
   LOAD_USER_SUCCESS,
+  LOAD_USER_FAILED,
   LOGIN_USER_FAILED,
   LOGIN_USER_REQ,
   LOGIN_USER_SUCCESS,
@@ -36,7 +37,7 @@ export const newUserReducer = (state = {}, action) => {
       break;
   }
 };
-export const loginReducer = (state = { }, action) => {
+export const loginReducer = (state = {}, action) => {
   switch (action.type) {
     case LOGIN_USER_REQ:
       return {
@@ -47,7 +48,6 @@ export const loginReducer = (state = { }, action) => {
         loading: false,
         data: action.payload.user,
         success: action.payload.success,
-        token: action.payload.token
       };
     case LOGIN_USER_FAILED:
       return {
@@ -68,12 +68,14 @@ export const loadReducer = (state = { state: "working" }, action) => {
     case LOAD_USER_SUCCESS:
       return {
         loading: false,
-        data: action.payload.user,
+        user: action.payload.user,
         success: action.payload.success,
+        isAuthenticated: true
       };
-    case LOGIN_USER_FAILED:
+    case LOAD_USER_FAILED:
       return {
         loading: false,
+        isAuthenticated: false,
         error: action.payload,
       };
     default:

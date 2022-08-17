@@ -19,7 +19,7 @@ export const createUserAction = (myForm) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us61.gitpod.io//api/user/creating",
+      "http://localhost:3001/api/user/creating",
       myForm,
       config
     );
@@ -35,12 +35,11 @@ export const loginUser = (myForm) => async (dispatch) => {
     const config = {
       header: {
         "Content-Type": "multipart/form-data",
-        withCredentials: true,
-        credentials: "include",
       },
+      withCredentials: true,
     };
     const { data } = await axios.post(
-      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us61.gitpod.io/api/user/login",
+      `http://localhost:3001/api/user/login`,
       myForm,
       config
     );
@@ -55,12 +54,11 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQ });
 
-    const { data } = await axios.get(
-      "https://3001-nnhasan0290-nextecommer-jtd50d9b3kq.ws-us61.gitpod.io/api/user/load"
-    );
+    const { data } = await axios.get(`http://localhost:3001/api/user/load`,{withCredentials:true});
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });
   } catch (error) {
+    console.log(error.response.data);
     dispatch({ type: LOAD_USER_FAILED, payload: error.response.data.error });
   }
 };

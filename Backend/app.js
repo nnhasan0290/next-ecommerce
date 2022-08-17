@@ -10,13 +10,16 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 const upload = multer();
+
+app.use(express.json());
+app.use(cookieParser());
+
 dotenv.config({ path: "Backend/config/.env" });
 connectDatabase();
 
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
-app.use(express.json());
 
-app.use(cors());
 app.use(upload.array());
 
 app.get("/", (req, res, next) => {
@@ -24,7 +27,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/api", productRoutes);
-app.use(cookieParser());
+
 app.use("/api", userRoutes);
 
 app.use(errorHandler);

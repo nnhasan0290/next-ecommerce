@@ -21,7 +21,30 @@ export const createProduct = catchAsyncError(async (req, res, nex) => {
     });
   }
   req.body.images = imageLinks;
+  req.body.user = req.user.id;
 
   const product = await Product.create(req.body);
   res.send({ success: true, product });
+});
+
+export const getAllProducts = catchAsyncError(async (req, res, nex) => {
+  //searched products ===========================
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {};
+
+  const products = await Product.find({ ...keyword });
+
+  if (!products.length) {
+    throw { message: "products not found", statusCode: 400 };
+  }
+  res.status(200).json({
+    success: true,
+    products,
+  });
 });

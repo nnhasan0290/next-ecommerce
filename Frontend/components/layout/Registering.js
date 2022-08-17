@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { createUserAction } from "../../redux/actions/userAction";
 import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
 
 const Registering = () => {
   const [fname, setFname] = useState("");
@@ -10,6 +11,7 @@ const Registering = () => {
   const [password, setpassword] = useState("");
   const [confirmPass, setconfirmPass] = useState("");
   const [inputImg, setInputImg] = useState("");
+  const router = useRouter();
 
   const dispatch = useDispatch();
   const state = useSelector(state => state.newUser);
@@ -26,13 +28,13 @@ const Registering = () => {
     register_form.set("confirmPass", confirmPass);
     register_form.set("image", inputImg);
     dispatch(createUserAction(register_form));
+    router.push("/login")
   };
 
   //file Upload ==============================================
   const fileUpload = (e) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
-      console.log(e.target.files);
       reader.readAsDataURL(e.target.files[0]);
     }
     reader.onload = (readerEvent) => {

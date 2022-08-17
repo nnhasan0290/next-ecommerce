@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/actions/userAction";
+import {useRouter} from "next/router";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const state = useSelector((state) => state.loginUser);
   const dispatch = useDispatch();
-  console.log(state);
+  const router = useRouter();
 
   //Submit handler =================================
   const submitHandler = (e) => {
@@ -15,6 +16,7 @@ const Login = () => {
     myForm.set("email", email);
     myForm.set("password", password);
     dispatch(loginUser(myForm));
+    router.push("/",{shallow:false});
   };
   return (
     <div className="flex justify-center items-center bg-[#f9f9f9]">

@@ -30,14 +30,8 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
     throw { message: "wrong user or password", statusCode: 400 };
   }
   const token = jwt.sign({ id: user._id }, "sssecret");
-  const options = {
-    expires: new Date(
-      Date.now() + 1 * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-  };
 
-  res.status(200).cookie("token", token,options).json({
+  res.status(200).cookie("token", token).json({
     success: true,
     user,
     token,
@@ -46,6 +40,18 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
 
 //Load user controller
 export const loadUser = catchAsyncError(async (req, res, nex) => {
-  console.log(req.cookies);
-  res.send("load user is working now");
+ 
+  const {token} = req.cookies;
+  if(!token){
+    throw {message:"user token not found", statusCode:400};
+  }
+  const decoded_data = jwt.verify(token, "sssecret");
+  const user = await User.findById(decoded_data.id);
+  if(!user){
+    throw{message: "user not found", statusCode:400};
+  }
+  res.status(200).json({
+    success: true,
+    user
+  });
 });

@@ -2,6 +2,9 @@ import {
   CREATE_PRODUCT_FAIL,
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_REQ,
+  ALL_PRODUCT_FAIL,
+  ALL_PRODUCT_SUCCESS,
+  ALL_PRODUCT_REQ,
 } from "../constants/productCons";
 export const newProductReducer = (state = {}, action) => {
   switch (action.type) {
@@ -19,7 +22,6 @@ export const newProductReducer = (state = {}, action) => {
       };
       break;
     case CREATE_PRODUCT_FAIL:
-      console.log(action.payload);
       return {
         loading: false,
         error: action.payload,
@@ -31,3 +33,26 @@ export const newProductReducer = (state = {}, action) => {
       break;
   }
 };
+
+export const getAllProductReducer = (state={},action) => {
+  switch(action.type){
+    case ALL_PRODUCT_REQ:
+    return{
+      ...state,
+      loading: true,
+    };
+    case ALL_PRODUCT_SUCCESS:
+    return{
+      loading: false,
+      products: action.payload.products,
+      success: action.payload.success,
+    }
+    case ALL_PRODUCT_FAIL:
+    return{
+      loading: false,
+      error: action.payload,
+    }
+    default:
+    return state;
+  }
+}

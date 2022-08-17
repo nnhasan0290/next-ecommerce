@@ -31,6 +31,11 @@ const Product = mongoose.model(
       type: String,
       required: [true, "please enter the product description"],
     },
+    price: {
+      type: Number,
+      required: [true, "Please enter the price"],
+      maxLength: [4, "price cannot exceed 4 character"],
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -65,6 +70,18 @@ const Product = mongoose.model(
         },
       },
     ],
+    numOfReviews: {
+      type: Number,
+      default: 0,
+    },
+    ratings: {
+      type: Number,
+      default: 0,
+    },
+    discount: {
+      type: Number,
+      default: 0,
+    },
   })
 );
 

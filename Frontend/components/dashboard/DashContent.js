@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { creatingProduct } from "../../redux/actions/productAction";
+import {useRouter} from "next/router";
+import {loadUser} from "../../redux/actions/userAction"
 
 const DashContent = () => {
   const [inputImg, setInputImg] = useState([]);
@@ -15,9 +17,9 @@ const DashContent = () => {
   const [price, setPrice] = useState(0);
   const [desc, setDesc] = useState("");
   const [cat, setCat] = useState("");
+  const router = useRouter();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.newProducts);
-  console.log(state);
+  const {loading, data, success, error} = useSelector((state) => state.newProducts);
 
   //Methods ===========================
   const fileUpload = (e) => {
@@ -71,7 +73,7 @@ const DashContent = () => {
             <CurrencyDollarIcon className="h-7" />
             <input
               onChange={(e) => setPrice(e.target.value)}
-              value={price}
+              value={price>0 && price}
               type="number"
               placeholder="price"
               min={20}
@@ -99,10 +101,12 @@ const DashContent = () => {
               className="capitalize outline-none"
             >
               <option value="">Select</option>
+              <option value="speaker">Speaker</option>
               <option value="laptop">Laptop</option>
-              <option value="desktop">desktop</option>
-              <option value="Electronics">Electronics</option>
-              <option value="four">four</option>
+              <option value="camera">camera</option>
+              <option value="phone">Phone</option>
+              <option value="watches">watches</option>
+              <option value="headphones">headphones</option>
             </select>
           </div>
           <div className="input-parent">
@@ -112,7 +116,7 @@ const DashContent = () => {
               name="stock"
               id="stock"
               placeholder="Stock"
-              value={stock}
+              value={stock>0 && stock}
               min={1}
               max={50}
               required

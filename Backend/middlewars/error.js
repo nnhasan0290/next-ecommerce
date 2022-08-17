@@ -1,8 +1,9 @@
 export default (err, req, res, nex) => {
-  console.log(err);
-  res.status(err.statusCode).json({
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "invalid server error";
+  res.status(statusCode).json({
     success: false,
-    error: err.message,
+    error: message,
   });
   return;
 };
