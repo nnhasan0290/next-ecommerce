@@ -70,8 +70,8 @@ const AllProduct = () => {
           <Heading text="All Categories" />
           {categories.map((each, i) => (
             <li
+              key={each}
               className="py-1 capitalize list-none cursor-pointer text-medium hover:text-[#0167f3] transition duration-500 ease-in"
-              key={i}
             >
               {each}
             </li>

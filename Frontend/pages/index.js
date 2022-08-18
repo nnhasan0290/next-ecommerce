@@ -1,17 +1,17 @@
 import Head from "next/head";
 import HomeProducts from "../components/Homepage/HomeProducts";
-import {loadUser} from "../redux/actions/userAction.js";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import { loadUser } from "../redux/actions/userAction.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
-
-export default function Home({data}) {
-  const {isAuthenticated, user, success, error} = useSelector(state => state.loadUser);
-  console.log(isAuthenticated, data, error);
+export default function Home({ data }) {
+  const { isAuthenticated, user, success, error } = useSelector(
+    (state) => state.loadUser
+  );
   const dispatch = useDispatch();
-  useEffect(()=>{
-   dispatch(loadUser());
-  },[])
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
   return (
     <div>
       <Head>
@@ -28,9 +28,9 @@ export default function Home({data}) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3001/api/products`)
-  const data = await res.json()
+  const res = await fetch(`http://localhost:3001/api/products`);
+  const data = await res.json();
 
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data } };
 }
