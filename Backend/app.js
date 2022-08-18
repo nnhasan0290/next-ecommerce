@@ -17,8 +17,13 @@ app.use(cookieParser());
 dotenv.config({ path: "Backend/config/.env" });
 connectDatabase();
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-
+app.use(
+  cors({
+    origin:
+      "https://3000-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io",
+    credentials: true,
+  })
+);
 
 app.use(upload.array());
 

@@ -8,16 +8,15 @@ import {
 } from "../constants/productCons.js";
 import axios from "axios";
 
-
 export const creatingProduct = (myForm) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_PRODUCT_REQ });
     const config = {
       headers: { "Content-Type": "multipart/form-data" },
-      withCredentials: true
+      withCredentials: true,
     };
     const { data } = await axios.post(
-      "http://localhost:3001/api/product/create",
+      "https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io/api/product/create",
       myForm,
       config
     );
@@ -30,14 +29,19 @@ export const creatingProduct = (myForm) => async (dispatch) => {
   }
 };
 
-export const getAllProducts = (keyword="") => async(dispatch) => {
-  try{
-    dispatch({type:ALL_PRODUCT_REQ});
-    const link = `http://localhost:3001/api/products?keyword=${keyword}`;
-    const {data} = await axios.get(link);
-    dispatch({type:ALL_PRODUCT_SUCCESS, payload:data});
+export const getAllProducts =
+  (keyword = "", price = [0, 1000], page = 1, category = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: ALL_PRODUCT_REQ });
+      let link = `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io/api/products?keyword=${keyword}&price[$gte]=${price[0]}&price[$lte]=${price[1]}&page=${page}`;
+      if (category) {
+         link = `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io/api/products?keyword=${keyword}&price[$gte]=${price[0]}&price[$lte]=${price[1]}&page=${page}&category=${category}`;
+      }
 
-  }catch(error){
-    dispatch({type:ALL_PRODUCT_FAIL,payload:error.response.data.error});
-  }
-} 
+      const { data } = await axios.get(link);
+      dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: ALL_PRODUCT_FAIL, payload: error.response.data.error });
+    }
+  };

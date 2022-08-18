@@ -5,5 +5,4 @@ export default (err, req, res, nex) => {
     success: false,
     error: message,
   });
-  return;
 };

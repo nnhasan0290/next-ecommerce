@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import { catchAsyncError } from "../middlewars/catchAsyncErrors.js";
+import ApiFeature from "../utils/apiFeature.js";
 import Product from "./../Models/productModel.js";
 
 export const createProduct = catchAsyncError(async (req, res, nex) => {
@@ -28,23 +29,19 @@ export const createProduct = catchAsyncError(async (req, res, nex) => {
 });
 
 export const getAllProducts = catchAsyncError(async (req, res, nex) => {
-  //searched products ===========================
-  const keyword = req.query.keyword
-    ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: "i",
-        },
-      }
-    : {};
+  const resultPerPage = 6;
+  const apiFeature = new ApiFeature(Product.find(), req.query).search().filter().categorize();
+  const filtered_products = await apiFeature.products;
+  const total_products = filtered_products.length;
+  await apiFeature.pagination(resultPerPage)
+  const products = await apiFeature.products.clone();
 
-  const products = await Product.find({ ...keyword });
-
-  if (!products.length) {
-    throw { message: "products not found", statusCode: 400 };
+  if(!products.length){
+    throw {message:"product not found", statusCode: 400};
   }
   res.status(200).json({
     success: true,
     products,
+    total_products
   });
 });
