@@ -45,7 +45,11 @@ export const loginUser = (myForm) => async (dispatch) => {
     );
     dispatch({ type: LOGIN_USER_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: LOGIN_USER_FAILED, payload: error.response.data.error });
+    if (error.response) {
+      dispatch({ type: LOGIN_USER_FAILED, payload: error.response.data.error });
+    } else {
+      dispatch({ tyep: LOGIN_USER_FAILED, payload: error.message });
+    }
   }
 };
 
@@ -54,11 +58,19 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQ });
 
-    const { data } = await axios.get(`http://localhost:3001/api/user/load`,{withCredentials:true});
+    const { data } = await axios.get(`http://localhost:3001/api/user/load`, {
+      withCredentials: true,
+    });
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });
   } catch (error) {
-    console.log(error.response.data);
-    dispatch({ type: LOAD_USER_FAILED, payload: error.response.data.error });
+    
+    if(error.response.data){
+      dispatch({ type: LOAD_USER_FAILED, payload: error.response.data.error });
+    } else{
+      console.log(error.message);
+      dispatch({type: LOAD_USER_FAILED, payload: error.message})
+    }
+
   }
 };

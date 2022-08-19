@@ -15,7 +15,7 @@ const HomeProducts = ({products}) => {
             fringilla
           </p>
         </div>
-        <div className="box-border flex flex-wrap w-full my-10">
+        <div className="box-border flex flex-wrap justify-center my-10 w-full">
           {products.map((each) => (
             <SingleProduct
               key={each.id}
