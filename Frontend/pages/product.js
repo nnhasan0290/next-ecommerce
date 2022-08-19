@@ -8,7 +8,7 @@ const Products = () => {
         <title>Products</title>
       </Head>
       <Heading />
-      <div className="sm:p-10 md:space-x-5 md:flex bg-[#f9f9f9]">
+      <div className=" md:space-x-5 md:flex bg-[#f9f9f9]">
         <AllProducts />
       </div>
     </>
