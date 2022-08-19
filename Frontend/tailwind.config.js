@@ -15,6 +15,9 @@ module.exports = {
         pingFast: "pingFast 1.6s linear infinite",
         pingSlow: "pingFast .8s linear infinite",
       },
+      transitionProperty: {
+        'height': 'height',
+      }
     },
   },
   plugins: [],

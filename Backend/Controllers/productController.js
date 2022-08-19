@@ -30,7 +30,7 @@ export const createProduct = catchAsyncError(async (req, res, nex) => {
 
 export const getAllProducts = catchAsyncError(async (req, res, nex) => {
   const resultPerPage = 6;
-  const apiFeature = new ApiFeature(Product.find(), req.query).search().filter().categorize();
+  const apiFeature = new ApiFeature(Product.find(), req.query).search().filter().sort().categorize();
   const filtered_products = await apiFeature.products;
   const total_products = filtered_products.length;
   await apiFeature.pagination(resultPerPage)

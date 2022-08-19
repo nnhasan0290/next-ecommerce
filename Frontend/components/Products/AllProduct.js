@@ -26,6 +26,7 @@ const AllProduct = () => {
   const [category, setCategory] = useState("");
   const [checked, setChecked] = useState(null);
   const [page, setPageNo] = useState(1);
+  const [sortMethod, setSortMethod] = useState("");
   const valueText = (value) => value;
   const router = useRouter();
 
@@ -45,8 +46,8 @@ const AllProduct = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllProducts(router.query.s, sliderVal, page, category));
-  }, [router.query, sliderVal, page, category]);
+    dispatch(getAllProducts(router.query.s, sliderVal, page,sortMethod, category));
+  }, [router.query, sliderVal, page,sortMethod, category]);
   return (
     <>
       {loading ? (
@@ -79,7 +80,10 @@ const AllProduct = () => {
               <Heading text="All Categories" />
               {categories.map((each, i) => (
                 <li
-                  onClick={() => setCategory(each)}
+                  onClick={() => {
+                    setCategory(each);
+                    setPageNo(1);
+                  }}
                   key={each}
                   className={`py-1 capitalize list-none cursor-pointer text-medium hover:text-[#0167f3] hover:scale-105 transition duration-200 ease ${
                     each === category && "text-[#0167f3]"
@@ -100,6 +104,7 @@ const AllProduct = () => {
                   onChange={(event, newVal) => {
                     setChecked(false);
                     setValue(newVal);
+                    setPageNo(1);
                   }}
                   valueLabelDisplay="on"
                   getAriaValueText={valueText}
@@ -114,6 +119,7 @@ const AllProduct = () => {
                     const str = e.target.value;
                     const splited = str.split(",");
                     setValue([parseInt(splited[0]), parseInt(splited[1])]);
+                    setPageNo(1);
                   }}
                 >
                   <div className="flex items-center pb-2 space-x-2 text-normal">
@@ -178,12 +184,14 @@ const AllProduct = () => {
                 <label className="" htmlFor="sort">
                   Sort by:
                 </label>
-                <select className="py-2 px-5 border rounded-sm outline-none md:pr-[38px]">
-                  <option value="popularity">Popularity</option>
-                  <option value="Low-to-High">Low-to-High</option>
-                  <option value="High-to-Low">High-to-Low</option>
-                  <option value="A-Z order">A-Z order</option>
-                  <option value="Z-A order">Z-A order</option>
+                <select onChange={(e)=> {
+                  setSortMethod(e.target.value);
+                }} className="py-2 px-5 border rounded-sm outline-none md:pr-[38px]">
+                  <option value="">Popularity</option>
+                  <option value="price" selected={sortMethod === "price"}>Low-to-High</option>
+                  <option value="antiprice" selected={sortMethod === "antiprice"}>High-to-Low</option>
+                  <option value="name" selected={sortMethod === "name"}>A-Z order</option>
+                  <option value="antiname" selected={sortMethod === "antiname"}>Z-A order</option>
                 </select>
                 <p className="hidden pl-5 md:block">
                   Showing: 1 to {products && products.length} item
@@ -203,6 +211,7 @@ const AllProduct = () => {
             {total > 6 && (
               <Stack spacing={2}>
                 <Pagination
+                className="mx-auto"
                   onChange={(e, p) => {
                     setPageNo(Number(p));
                   }}

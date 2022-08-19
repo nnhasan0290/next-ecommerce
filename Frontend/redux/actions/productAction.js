@@ -30,13 +30,13 @@ export const creatingProduct = (myForm) => async (dispatch) => {
 };
 
 export const getAllProducts =
-  (keyword = "", price = [0, 1000], page = 1, category = "") =>
+  (keyword = "", price = [0, 1000], page = 1,sort="", category = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_PRODUCT_REQ });
-      let link = `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io/api/products?keyword=${keyword}&price[$gte]=${price[0]}&price[$lte]=${price[1]}&page=${page}`;
+      let link = `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io/api/products?keyword=${keyword}&price[$gte]=${price[0]}&price[$lte]=${price[1]}&page=${page}&sort=${sort}`;
       if (category && category !== 'All') {
-         link = `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io/api/products?keyword=${keyword}&price[$gte]=${price[0]}&price[$lte]=${price[1]}&page=${page}&category=${category}`;
+         link = `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io/api/products?keyword=${keyword}&price[$gte]=${price[0]}&price[$lte]=${price[1]}&page=${page}&sort=${sort}&category=${category}`;
       }
 
       const { data } = await axios.get(link);
