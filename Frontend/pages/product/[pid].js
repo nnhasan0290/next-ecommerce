@@ -1,6 +1,6 @@
-import SingleProduct from "../components/Products/SingleProduct";
+import SingleProduct from "../../components/Products/SingleProduct";
 import Head from "next/head";
-import Heading from "../components/Heading/Heading";
+import Heading from "../../components/Heading/Heading";
 export default () => (
   <>
     <Head>

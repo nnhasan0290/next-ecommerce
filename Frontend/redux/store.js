@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { newProductReducer,getAllProductReducer } from "./reducers/productReducers";
+import { newProductReducer,getAllProductReducer, singleProductReducer, reviewProductReducer } from "./reducers/productReducers";
 import { loadReducer, loginReducer, newUserReducer } from "./reducers/userReducers";
 
 const rootReducer = combineReducers({
@@ -13,7 +13,9 @@ const rootReducer = combineReducers({
   newUser: newUserReducer,
   loginUser: loginReducer,
   loadUser: loadReducer,
-  allProducts: getAllProductReducer
+  allProducts: getAllProductReducer,
+  singleProduct: singleProductReducer,
+  reviewProduct: reviewProductReducer,
 });
 
 const middleware = [thunk];

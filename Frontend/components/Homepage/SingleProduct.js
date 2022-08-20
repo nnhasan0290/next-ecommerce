@@ -1,8 +1,11 @@
 import StarRatingComponent from "react-star-rating-component";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
 
 const SingleProduct = ({ product, lgBasis }) => {
+  const router = useRouter();
   const {
+    _id,
     name,
     category,
     images,
@@ -16,7 +19,7 @@ const SingleProduct = ({ product, lgBasis }) => {
   return (
     <div className={`basis-[100%] sm:basis-1/2 ${lgBasis} `}>
       <div className="box-border p-2  my-2 border-[#eee] shadow-3xl sm:mx-3 rounded-sm bg-white group">
-        <div className="relative overflow-hidden">
+        <div className="overflow-hidden relative">
           <img
             src={images[0].url}
             alt=""
@@ -34,7 +37,7 @@ const SingleProduct = ({ product, lgBasis }) => {
         </div>
         <div className="px-3 m-5 capitalize">
           <span className="text-sm tracking-tight">{category}</span>
-          <h2 className="semi-heading">{name}</h2>
+          <h2 onClick={()=>router.push(`/product/${_id}`)} className="semi-heading">{name}</h2>
           <div className="flex items-center space-x-2">
             <StarRatingComponent
               name="product"

@@ -51,13 +51,12 @@ const Product = mongoose.model(
     },
     reviews: [
       {
-        userId: {
-          type: mongoose.Schema.ObjectId,
-          ref: "User",
-          required: true,
-        },
         rating: {
           type: Number,
+          required: true,
+        },
+        subject:{
+          type: String,
           required: true,
         },
         name: {
