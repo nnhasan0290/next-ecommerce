@@ -894,6 +894,11 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+country-state-city@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/country-state-city/-/country-state-city-3.1.0.tgz#0318fd2985844ad10c9b91bd3c2aba36963c9483"
+  integrity sha512-ALmtwgIsIgg3HyxRBOALLmSkCWufNTL8ft1A4Sn/FTzxcP53ep2nAwxa3+R4LcDPfYjpSg9XkI3CDEoaFSstsQ==
+
 cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"

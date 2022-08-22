@@ -1,15 +1,16 @@
 import Loader from "../components/layout/Loader";
 import Head from "next/head";
-import { useSession } from "next-auth/react";
+import CheckoutComponent from "../components/cart/Checkout";
+import Heading from "../components/Heading/Heading"
+
 const Checkout = () => {
-  const { data: session } = useSession();
-  console.log(session);
   return (
     <>
       <Head>
         <title>Checkout</title>
       </Head>
-      <Loader />
+      <Heading/>
+      <CheckoutComponent/>
     </>
   );
 };
