@@ -1,6 +1,9 @@
 import StarRatingComponent from "react-star-rating-component";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { addingCartItems } from "../../redux/actions/cartAction";
+import { useAlert } from "react-alert";
 
 const SingleProduct = ({ product, lgBasis }) => {
   const router = useRouter();
@@ -15,6 +18,15 @@ const SingleProduct = ({ product, lgBasis }) => {
     price,
     discount,
   } = product;
+  const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const cartItems = useSelector(state => state.cart);
+  
+  const clickHandle = () => {
+    dispatch(addingCartItems(_id,1));
+    alert.success("Product has been added to cart");
+  }
 
   return (
     <div className={`basis-[100%] sm:basis-1/2 ${lgBasis} `}>
@@ -30,7 +42,7 @@ const SingleProduct = ({ product, lgBasis }) => {
               {discount}%
             </span>
           )}
-          <button className="bg-[#0167f3] p-3 flex items-center text-white space-x-2 font-medium text-md absolute left-[50%] transform translate-x-[-50%] bottom-[-100%] group-hover:bottom-[30px] transition-all duration-500 ease-in-out rounded hover:bg-[#081828]">
+          <button onClick={clickHandle} className="bg-[#0167f3] p-3 flex items-center text-white space-x-2 font-medium text-md absolute left-[50%] transform translate-x-[-50%] bottom-[-100%] group-hover:bottom-[30px] transition-all duration-500 ease-in-out rounded hover:bg-[#081828]">
             <ShoppingCartIcon className="h-5" />
             <p className="tracking-tight"> Add To Cart</p>
           </button>

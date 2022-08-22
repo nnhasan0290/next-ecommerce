@@ -9,9 +9,10 @@ import Loader from "../components/layout/Loader";
 
 export default function Home({ data }) {
   const alert = useAlert();
-  const { isAuthenticated, user, success, error,loading } = useSelector(
+  const { isAuthenticated, user, success, error, loading } = useSelector(
     (state) => state.loadUser
   );
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());
