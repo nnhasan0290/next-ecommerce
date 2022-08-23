@@ -11,6 +11,7 @@ export const cartReducer = (state = {cartItems:[],shippingInfo:{}}, action) => {
         const isItemExist = state.cartItems.find(each => each.product_id === item.product_id);
 
         if(isItemExist){
+         
           return{
             ...state,
             cartItems: state.cartItems.map((each) => {
@@ -20,13 +21,10 @@ export const cartReducer = (state = {cartItems:[],shippingInfo:{}}, action) => {
         }else{
           return{
             ...state,
-            cartItems: [...cartItems,item]
+            cartItems: [...state.cartItems,item]
           }
         }
         
-        return{
-          cartItems: action.payload,
-        }
     default:
       return state;
   }

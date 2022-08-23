@@ -13,13 +13,13 @@ export default function Home({ data }) {
     (state) => state.loadUser
   );
   
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadUser());
-    if (error) {
-      alert.error("load user failed or cookie has been expired");
-    }
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(loadUser());
+  //   if (error) {
+  //     alert.error("load user failed or cookie has been expired");
+  //   }
+  // }, []);
   return (
     <>
       {loading ? (

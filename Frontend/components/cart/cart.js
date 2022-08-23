@@ -1,5 +1,6 @@
 import { XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
+import {useDispatch} from "react-redux";
 const Cart = () => {
   return (
     <div className="sm:px-10 py-10 bg-[#f9f9f9]">
