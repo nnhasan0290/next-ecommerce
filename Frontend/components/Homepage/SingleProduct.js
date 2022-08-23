@@ -24,21 +24,19 @@ const SingleProduct = ({ product, lgBasis }) => {
   
   const clickHandle = () => {
     const previous = localStorage.getItem("cartItems");
-    console.log(previous);
     if(!previous){
-      console.log("previous");
-      const newItem = [{_id,price,name,discount,images,category,stock}];
+      const newItem = [{_id,price,name,discount,images,category,stock,quantity:1}];
       localStorage.setItem("cartItems",JSON.stringify(newItem));
     }else{
       const oldItems = JSON.parse(previous);
       
-      const isExist = oldItems.find((each) => each === _id);
+      const isExist = oldItems.find((each) => each._id === _id);
       
       if(isExist){
-        alert.show("this product has already been added to cart. To add more than 1 item please visit cart page");
+        alert.show("Already added");
         return;
       }else {
-        const modified_items = [...oldItems, {_id,price,discount,name,images,category,stock}];
+        const modified_items = [...oldItems, {_id,price,discount,name,images,category,stock,quantity:1}];
         console.log(modified_items);
         localStorage.setItem("cartItems", JSON.stringify(modified_items));
       }

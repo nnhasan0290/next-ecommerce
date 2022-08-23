@@ -1,7 +1,13 @@
-import { XIcon } from "@heroicons/react/outline";
-import Image from "next/image";
-import {useDispatch} from "react-redux";
+import { useEffect,useState } from "react";
+import SingleCartItem from "./singleCartItem";
+
 const Cart = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const localStorageProducts = JSON.parse(localStorage.getItem("cartItems"));
+    setProducts(localStorageProducts);
+  }, []);
+
   return (
     <div className="sm:px-10 py-10 bg-[#f9f9f9]">
       <div className="bg-white border shadow-3xl">
@@ -17,72 +23,9 @@ const Cart = () => {
           <div className="text-center basis-1/6 md:text-start">Discount</div>
           <div className="text-center basis-1/6 md:text-start">Remove</div>
         </div>
-        <div className="items-center p-3 border-t md:flex">
-          <div className="flex items-center py-2 basis-1/3">
-            <div className="basis-1/3">
-              <Image src={"/product-2.jpg"} width={120} height={100} />
-            </div>
-            <div className="">
-              <h2 className="text-[#081828]">
-                Canon EOS M50 Mirrorless Camera
-              </h2>
-              <span>Category: speaker</span>
-            </div>
-          </div>
-          <div className="py-2 text-center basis-1/6 md:text-start">
-            <select
-              className="w-[60%] rounded-md outline-none border p-3"
-              name=""
-              id=""
-            >
-              <option value="1">1</option>
-              <option value="1">2</option>
-              <option value="1">3</option>
-              <option value="1">4</option>
-              <option value="1">5</option>
-            </select>
-          </div>
-          <div className="py-2 text-center basis-1/6 md:text-start">
-            <p>$910.00</p>
-          </div>
-          <div className="py-2 text-center basis-1/6 md:text-start">$29.00</div>
-          <div className="p-1 py-2 basis-1/6">
-            <XIcon className="m-auto h-5 text-white bg-red-500 rounded-full cursor-pointer md:m-0 hover:bg-[#081828] transition duration-300" />
-          </div>
-        </div>
-        <div className="items-center p-3 border-t md:flex">
-          <div className="flex items-center py-2 basis-1/3">
-            <div className="basis-1/3">
-              <Image src={"/product-2.jpg"} width={120} height={100} />
-            </div>
-            <div className="">
-              <h2 className="text-[#081828]">
-                Canon EOS M50 Mirrorless Camera
-              </h2>
-              <span>Category: speaker</span>
-            </div>
-          </div>
-          <div className="py-2 text-center basis-1/6 md:text-start">
-            <select
-              className="w-[60%] rounded-md outline-none border p-3"
-              name=""
-              id=""
-            >
-              <option value="1">1</option>
-              <option value="1">2</option>
-              <option value="1">3</option>
-              <option value="1">4</option>
-              <option value="1">5</option>
-            </select>
-          </div>
-          <div className="py-2 text-center basis-1/6 md:text-start">
-            <p>$910.00</p>
-          </div>
-          <div className="py-2 text-center basis-1/6 md:text-start">$29.00</div>
-          <div className="p-1 py-2 basis-1/6">
-            <XIcon className="m-auto h-5 text-white bg-red-500 rounded-full cursor-pointer md:m-0 hover:bg-[#081828] transition duration-300" />
-          </div>
-        </div>
+        {products && products.map((each,i) => (
+          <SingleCartItem key={i} product={each} index={i} />
+        ))}
       </div>
       <div className="justify-between py-10 md:flex">
         <div className="">

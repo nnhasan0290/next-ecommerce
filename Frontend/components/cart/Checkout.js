@@ -1,16 +1,18 @@
 import CustomizedSteppers from "./checkStep";
 import HomeIcon from "@mui/icons-material/Home";
 import { Country, State } from "country-state-city";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { saveShippingInfo } from "../../redux/actions/cartAction";
+import {
+  saveShippingInfo,
+} from "../../redux/actions/cartAction";
 import { useAlert } from "react-alert";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import PublicIcon from "@mui/icons-material/Public";
 import PhoneIcon from "@mui/icons-material/Phone";
 import PinDropIcon from "@mui/icons-material/PinDrop";
-import TransferWithinAStationIcon  from "@mui/icons-material/TransferWithinAStation";
-import {useRouter} from "next/router"
+import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
+import { useRouter } from "next/router";
 
 const CheckoutComponent = () => {
   const shippingInfo = useSelector((state) => state.cart);
@@ -22,9 +24,11 @@ const CheckoutComponent = () => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [phoneNo, setPhoneNo] = useState(0);
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const alert = useAlert();
   const router = useRouter();
+
 
   const submitHandle = (e) => {
     e.preventDefault();
@@ -33,10 +37,15 @@ const CheckoutComponent = () => {
       return;
     }
     dispatch(
-      saveShippingInfo({ address, city, postCode, country, state, phoneNo })
+      saveShippingInfo([{ address, city, postCode, country, state, phoneNo },products])
     );
-    router.push("/confirmorder");
+     router.push("/confirmorder");
   };
+
+  useEffect(() => {
+    const product = JSON.parse(localStorage.getItem("cartItems"));
+    setProducts(product);
+  }, []);
   return (
     <div className="md:p-10 bg-[#f9f9f9]">
       <div className="py-5 bg-white shadow-3xl">
@@ -44,7 +53,10 @@ const CheckoutComponent = () => {
       </div>
       <div className="my-10 bg-white md:py-10 shadow-3xl">
         <h2 className="text-xl text-center big-heading">Shipping Details</h2>
-        <form onSubmit={submitHandle} className="w-[50%] min-w-[200px] mx-auto my-5">
+        <form
+          onSubmit={submitHandle}
+          className="w-[50%] min-w-[200px] mx-auto my-5"
+        >
           <div className="flex items-center p-2 m-2 space-x-6 border">
             <HomeIcon />
             <input
@@ -111,7 +123,7 @@ const CheckoutComponent = () => {
             </select>
           </div>
           <div className="flex items-center p-2 m-2 space-x-6 border">
-            <TransferWithinAStationIcon  />
+            <TransferWithinAStationIcon />
             <select
               value={state}
               onChange={(e) => setState(e.target.value)}
