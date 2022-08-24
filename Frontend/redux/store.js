@@ -6,8 +6,17 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducer";
-import { newProductReducer,getAllProductReducer, singleProductReducer, reviewProductReducer } from "./reducers/productReducers";
-import { loadReducer, loginReducer, newUserReducer } from "./reducers/userReducers";
+import {
+  newProductReducer,
+  getAllProductReducer,
+  singleProductReducer,
+  reviewProductReducer,
+} from "./reducers/productReducers";
+import {
+  loadReducer,
+  loginReducer,
+  newUserReducer,
+} from "./reducers/userReducers";
 
 const rootReducer = combineReducers({
   newProducts: newProductReducer,
@@ -17,7 +26,14 @@ const rootReducer = combineReducers({
   allProducts: getAllProductReducer,
   singleProduct: singleProductReducer,
   reviewProduct: reviewProductReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  totalAmount: (state = {}, action) => {
+    if (action.type === "GET_TOTAL_AMOUNT") {
+      return { amount: action.payload };
+    } else {
+      return state;
+    }
+  },
 });
 
 const middleware = [thunk];

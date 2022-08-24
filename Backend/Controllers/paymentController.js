@@ -2,9 +2,8 @@ import stripe from "../utils/stripe.js";
 import {catchAsyncError} from "../middlewars/catchAsyncErrors.js"
 
 export const paymentProcess = catchAsyncError(async(req,res,nex)=>{
-
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: req.body,
+        amount: req.body.amount,
         currency: "usd",
         automatic_payment_methods: {
           enabled: true,

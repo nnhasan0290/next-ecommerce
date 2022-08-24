@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import CustomizedSteppers from "./checkStep";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import {useRouter} from "next/router"
 
 const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const totalAmount = cartItems.reduce((total,each) => {return total+ each.quantity*each.price},0);
-  console.log(totalAmount);
+  
+  dispatch({type:"GET_TOTAL_AMOUNT",payload:totalAmount});
   return (
     <div className="p-10 bg-[#f9f9f9] capitalize">
       <div className="py-5 bg-white shadow-3xl">

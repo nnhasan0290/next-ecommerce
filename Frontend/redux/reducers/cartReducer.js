@@ -1,4 +1,4 @@
-import { ADD_TO_CART, SAVE_SHIPPING_INFO } from "../constants/cartCons";
+import { SAVE_SHIPPING_INFO } from "../constants/cartCons";
 export const cartReducer = (state = {cartItems:[],shippingInfo:{}}, action) => {
   switch (action.type) {
     case SAVE_SHIPPING_INFO:
