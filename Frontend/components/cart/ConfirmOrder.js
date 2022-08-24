@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import CustomizedSteppers from "./checkStep";
 import { useSelector } from "react-redux";
+import {useRouter} from "next/router"
 
 const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+  const router = useRouter();
+
+  const totalAmount = cartItems.reduce((total,each) => {return total+ each.quantity*each.price},0);
+  console.log(totalAmount);
   return (
     <div className="p-10 bg-[#f9f9f9] capitalize">
       <div className="py-5 bg-white shadow-3xl">
@@ -54,7 +59,13 @@ const ConfirmOrder = () => {
             <h2 className="semi-heading hover:text-[#081828] cursor-auto border-b p-3">
               Order Summery
             </h2>
-            <div></div>
+            <p>Subtotal: {totalAmount}</p>
+            <button onClick={
+              () => {
+                localStorage.setItem("amount",totalAmount);
+                router.push("/payment");
+              }
+            }>Prcoess to Payment</button>
           </div>
         </div>
       </div>
