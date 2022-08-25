@@ -48,7 +48,7 @@ const CheckoutComponent = () => {
   }, []);
   return (
     <div className="md:p-10 bg-[#f9f9f9]">
-      <div className="py-5 bg-white shadow-3xl">
+      <div className="hidden py-5 bg-white shadow-3xl sm:block">
         <CustomizedSteppers className="" activeStep={0} />
       </div>
       <div className="my-10 bg-white md:py-10 shadow-3xl">

@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import CustomizedSteppers from "./checkStep";
-import { useSelector,useDispatch } from "react-redux";
-import {useRouter} from "next/router"
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const totalAmount = cartItems.reduce((total,each) => {return total+ each.quantity*each.price},0);
-  
-  dispatch({type:"GET_TOTAL_AMOUNT",payload:totalAmount});
+  const totalAmount = cartItems.reduce((total, each) => {
+    return total + each.quantity * each.price;
+  }, 0);
+
+  dispatch({ type: "GET_TOTAL_AMOUNT", payload: totalAmount });
   return (
-    <div className="p-10 bg-[#f9f9f9] capitalize">
-      <div className="py-5 bg-white shadow-3xl">
+    <div className="md:p-10 bg-[#f9f9f9] capitalize">
+      <div className="hidden py-5 bg-white shadow-3xl sm:block">
         <CustomizedSteppers className="" activeStep={1} />
       </div>
-      <div className="my-10 space-x-10 md:flex">
-        <div className="p-10 bg-white basis-2/3 shadow-3xl">
+      <div className="my-10 md:space-x-10 md:flex">
+        <div className="p-10 mb-10 bg-white basis-2/3 shadow-3xl">
           <div>
             <h2 className="semi-heading hover:cursor-auto hover:text-[#081828]">
               Shipping info
@@ -61,13 +63,12 @@ const ConfirmOrder = () => {
             <h2 className="semi-heading hover:text-[#081828] cursor-auto border-b p-3">
               Order Summery
             </h2>
-            <p>Subtotal: {totalAmount}</p>
-            <button onClick={
-              () => {
-                localStorage.setItem("amount",totalAmount);
-                router.push("/payment");
-              }
-            }>Prcoess to Payment</button>
+            <div className="my-3">
+              <p>Subtotal: {totalAmount}</p>
+            </div>
+            <button onClick={() => router.push("/payment")} className="text-white bg-[#0167f3] hover:bg-[#081828] transition duration-300 p-3 rounded-sm my-3">
+              Prcoess to Payment
+            </button>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ connectDatabase();
 app.use(
   cors({
     origin:
-      "https://3000-nnhasan0290-nextecommer-oyfekk44ino.ws-us62.gitpod.io",
+      "https://3000-nnhasan0290-nextecommer-oyfekk44ino.ws-us63.gitpod.io",
     credentials: true,
   })
 );

@@ -41,7 +41,7 @@ const Cart = () => {
             </form>
           </div>
         </div>
-        <div className="p-8 bg-white border shadow-3xl">
+        {/* <div className="p-8 bg-white border shadow-3xl">
           <div>
             <div className="flex justify-between items-center py-2 space-x-20">
               <p>Cart Subtotal</p>
@@ -68,7 +68,7 @@ const Cart = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
