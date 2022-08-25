@@ -41,6 +41,9 @@ const CheckoutComponent = () => {
 
   useEffect(() => {
     const product = JSON.parse(localStorage.getItem("cartItems"));
+    if(product.length === 0){
+      router.push("/error");
+    }
     setProducts(product);
   }, []);
   return (

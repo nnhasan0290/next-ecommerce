@@ -67,7 +67,7 @@ const HeadBottom = () => {
           </ul>
         </li>
         <li className="py-3 list-none">
-          <Link href="/contact">Contact us</Link>
+          <Link href="/cart">Cart</Link>
         </li>
         <li className="py-3 list-none">
           <Link href="/blog">Blog</Link>

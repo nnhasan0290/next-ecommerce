@@ -1,12 +1,14 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import SingleCartItem from "./singleCartItem";
-import Link from "next/link"
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { localHostState } from "../../redux/actions/cartAction";
 
 const Cart = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.cart.allcartItems);
   useEffect(() => {
-    const localStorageProducts = JSON.parse(localStorage.getItem("cartItems"));
-    setProducts(localStorageProducts);
+    dispatch(localHostState(JSON.parse(localStorage.getItem("cartItems"))));
   }, []);
 
   return (
@@ -24,10 +26,18 @@ const Cart = () => {
           <div className="text-center basis-1/6 md:text-start">Discount</div>
           <div className="text-center basis-1/6 md:text-start">Remove</div>
         </div>
-        {products && products.map((each,i) => (
-          <SingleCartItem key={i} product={each} index={i} />
-        ))}
+        {products &&
+          products.map((each, i) => (
+            <SingleCartItem key={i} product={each} index={i} />
+          ))}
       </div>
+          {
+            products.length === 0 && (
+              <div className="p-10 my-10 text-xl text-center bg-white">
+                <h2>No products has been added yet</h2>
+              </div>
+            )
+          }
       <div className="justify-between py-10 md:flex">
         <div className="">
           <div className="p-10 bg-white rounded-sm border shadow-3xl">
@@ -42,13 +52,16 @@ const Cart = () => {
             </form>
           </div>
         </div>
-         <div>
+        <div className="flex flex-col">
+          {products.length>0 && (
+            <button className="text-white my-5 bg-[#0167f3] hover:bg-[#081828] transition duration-300 px-5 py-2 text-xl rounded-sm">
+              <Link href={"/checkout"}>Proceed to checkout</Link>
+            </button>
+          )}
           <button className="text-white bg-[#0167f3] hover:bg-[#081828] transition duration-300 px-5 py-2 text-xl rounded-sm">
-            <Link href={"/checkout"}>
-            proceed to checkout
-            </Link>
+            <Link href={"/product"}>Continue Shopping</Link>
           </button>
-         </div>
+        </div>
       </div>
     </div>
   );

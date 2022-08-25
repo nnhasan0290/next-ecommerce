@@ -2,8 +2,9 @@ import StarRatingComponent from "react-star-rating-component";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { addingCartItems } from "../../redux/actions/cartAction";
+import {  localHostState } from "../../redux/actions/cartAction";
 import { useAlert } from "react-alert";
+import { saveShippingInfo } from "../../redux/actions/cartAction";
 
 const SingleProduct = ({ product, lgBasis }) => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const SingleProduct = ({ product, lgBasis }) => {
     stock
   } = product;
   const alert = useAlert();
+  const dispatch = useDispatch();
 
   
   const clickHandle = () => {
@@ -27,6 +29,7 @@ const SingleProduct = ({ product, lgBasis }) => {
     if(!previous){
       const newItem = [{_id,price,name,discount,images,category,stock,quantity:1}];
       localStorage.setItem("cartItems",JSON.stringify(newItem));
+      dispatch(localHostState(newItem));
     }else{
       const oldItems = JSON.parse(previous);
       
@@ -39,6 +42,7 @@ const SingleProduct = ({ product, lgBasis }) => {
         const modified_items = [...oldItems, {_id,price,discount,name,images,category,stock,quantity:1}];
         console.log(modified_items);
         localStorage.setItem("cartItems", JSON.stringify(modified_items));
+        dispatch(localHostState(modified_items));
       }
     }
     

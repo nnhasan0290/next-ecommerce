@@ -1,25 +1,24 @@
 import { XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { localHostState } from "../../redux/actions/cartAction";
 
 
 const SingleCartItem = ({ product, index }) => {
  const dispatch = useDispatch();
 
-  const [show, setShow] = useState(true);
   const [quantity, setQuantity] = useState(product.quantity);
-  console.log(quantity);
-
+  const products = useSelector(state=> state.cart.allcartItems)
   
   const handleDelete = (e) => {
-    const allProducts = JSON.parse(localStorage.getItem("cartItems"));
-    allProducts.splice(index, 1);
-    localStorage.setItem("cartItems", JSON.stringify(allProducts));
-    setShow(false);
+    const items = [...products];
+    items.splice(index, 1);
+    localStorage.setItem("cartItems", JSON.stringify(items));
+    dispatch(localHostState(JSON.parse(localStorage.getItem("cartItems"))));
   };
   return (
-    <div className={`items-center p-3 border-t  ${!show ? "hidden" : "md:flex"}`}>
+    <div className={`items-center p-3 border-t md:flex`}>
       <div className="flex items-center py-2 basis-1/3">
         <div className="basis-1/3">
           <Image src={product.images[0].url} width={120} height={100} />
