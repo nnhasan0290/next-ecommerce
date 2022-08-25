@@ -6,6 +6,7 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducer";
+import { orderCreateReducer } from "./reducers/orderReducer";
 import {
   newProductReducer,
   getAllProductReducer,
@@ -27,6 +28,9 @@ const rootReducer = combineReducers({
   singleProduct: singleProductReducer,
   reviewProduct: reviewProductReducer,
   cart: cartReducer,
+  orderCreate: orderCreateReducer,
+
+
   totalAmount: (state = {}, action) => {
     if (action.type === "GET_TOTAL_AMOUNT") {
       return { amount: action.payload };

@@ -15,9 +15,6 @@ import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStati
 import { useRouter } from "next/router";
 
 const CheckoutComponent = () => {
-  const shippingInfo = useSelector((state) => state.cart);
-  console.log(shippingInfo);
-
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [postCode, setPostCode] = useState(0);

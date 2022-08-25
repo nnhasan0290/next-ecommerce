@@ -14,7 +14,6 @@ export const stripePromise = loadStripe(
 const Payment = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const amount = useSelector((state) => state.totalAmount);
-  const money = JSON.stringify({ amount: 400 });
 
   const [clientSecret, setClientSecret] = useState("");
   const config = {
@@ -27,7 +26,7 @@ const Payment = () => {
     axios
       .post(
         `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us63.gitpod.io/api/payment/process`,
-        money,
+        amount,
         config
       )
       .then((res) => setClientSecret(res.data.clientSecret));

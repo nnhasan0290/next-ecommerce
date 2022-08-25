@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+  console.log(shippingInfo,cartItems)
   const router = useRouter();
   const dispatch = useDispatch();
 

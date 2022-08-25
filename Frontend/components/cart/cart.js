@@ -1,5 +1,6 @@
 import { useEffect,useState } from "react";
 import SingleCartItem from "./singleCartItem";
+import Link from "next/link"
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
@@ -41,34 +42,13 @@ const Cart = () => {
             </form>
           </div>
         </div>
-        {/* <div className="p-8 bg-white border shadow-3xl">
-          <div>
-            <div className="flex justify-between items-center py-2 space-x-20">
-              <p>Cart Subtotal</p>
-              <p>$2560.00</p>
-            </div>
-            <div className="flex justify-between items-center py-2 space-x-10">
-              <p>Shipping </p>
-              <p>Free</p>
-            </div>
-            <div className="flex justify-between items-center py-2 space-x-10">
-              <p>Your save </p>
-              <p>$29.00</p>
-            </div>
-            <div className="flex justify-between items-center py-2 space-x-10">
-              <p>Your Pay </p>
-              <p>$3000.00</p>
-            </div>
-            <div className="mt-8">
-              <button className="bg-[#0167f3] w-full text-white p-3 rounded-sm hover:bg-[#081828] transition-all duration-300 mb-3">
-                Checkout
-              </button>
-              <button className="bg-[#0167f3] w-full text-white p-3 rounded-sm hover:bg-[#081828] transition-all duration-300">
-                Continue Shopping
-              </button>
-            </div>
-          </div>
-        </div> */}
+         <div>
+          <button className="text-white bg-[#0167f3] hover:bg-[#081828] transition duration-300 px-5 py-2 text-xl rounded-sm">
+            <Link href={"/checkout"}>
+            proceed to checkout
+            </Link>
+          </button>
+         </div>
       </div>
     </div>
   );
