@@ -18,8 +18,16 @@ export const paymentProcess = catchAsyncError(async(req,res,nex)=>{
 })
 
 export const createOrder = catchAsyncError(async (req,res,nex) => {
-  console.log(req.body);
  const order = await Order.create(req.body);
+  res.status(200).json({
+    success: true,
+    order
+  });
+})
+
+
+export const getAllOrder = catchAsyncError(async (req,res,nex) => {
+ const order = await Order.find();
   res.status(200).json({
     success: true,
     order

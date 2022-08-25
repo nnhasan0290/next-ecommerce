@@ -6,7 +6,7 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducer";
-import { orderCreateReducer } from "./reducers/orderReducer";
+import { getOrderReducer, orderCreateReducer } from "./reducers/orderReducer";
 import {
   newProductReducer,
   getAllProductReducer,
@@ -29,6 +29,7 @@ const rootReducer = combineReducers({
   reviewProduct: reviewProductReducer,
   cart: cartReducer,
   orderCreate: orderCreateReducer,
+  getOrder: getOrderReducer,
 
 
   totalAmount: (state = {}, action) => {

@@ -5,13 +5,14 @@ import {useSelector,useDispatch} from "react-redux";
 import {createOrder} from "../../redux/actions/orderAction.js";
 import Loader from "../layout/Loader.js"
 import Link from "next/link";
+import {useAlert} from "react-alert";
 
 const PaymentSuccess = (props) => {
   const [message, setMessage] = useState(null);
   const stripe = useStripe();
   const {success,loading} = useSelector(state => state.orderCreate);
-  console.log(success);
   const dispatch = useDispatch();
+  const alert = useAlert();
 
 
   useEffect(() => {
@@ -26,17 +27,20 @@ const PaymentSuccess = (props) => {
     if (!clientSecret) {
       return;
     }
-
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case "succeeded":
           const data = localStorage.getItem("order");
-          dispatch(createOrder(data));
-          if(success){
+          if(data === ""){
+            alert.error("Product has already bee added");
+            return;
+          }
+            dispatch(createOrder(data));
+         
             localStorage.setItem("cartItems",[]);
             localStorage.setItem("order","");
             setMessage("Payment succeeded!");
-          }
+          
           break;
         case "processing":
           setMessage("Your payment is processing.");
