@@ -4,16 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
 const ConfirmOrder = () => {
-  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  console.log(shippingInfo,cartItems)
+  const { shippingInfo, allcartItems } = useSelector((state) => state.cart);
+  console.log(shippingInfo,allcartItems);
   const router = useRouter();
   const dispatch = useDispatch();
+    const totalAmount = allcartItems.reduce((total, each) => {
+      return total + each.quantity * each.price;
+    }, 0);
+    dispatch({ type: "GET_TOTAL_AMOUNT", payload: totalAmount });
 
-  const totalAmount = cartItems.reduce((total, each) => {
-    return total + each.quantity * each.price;
-  }, 0);
-
-  dispatch({ type: "GET_TOTAL_AMOUNT", payload: totalAmount });
   return (
     <div className="md:p-10 bg-[#f9f9f9] capitalize">
       <div className="hidden py-5 bg-white shadow-3xl sm:block">
@@ -26,17 +25,17 @@ const ConfirmOrder = () => {
               Shipping info
             </h2>
             <div className="my-5 ml-5">
-              <p className="p-1">address: {shippingInfo.address}</p>
-              <p className="p-1">city: {shippingInfo.city}</p>
-              <p className="p-1">state: {shippingInfo.state}</p>
+              <p className="p-1">address: {shippingInfo?.address}</p>
+              <p className="p-1">city: {shippingInfo?.city}</p>
+              <p className="p-1">state: {shippingInfo?.state}</p>
             </div>
           </div>
           <div className="my-10">
             <h2 className="semi-heading hover:cursor-auto hover:text-[#081828]">
               Your Cart Items
             </h2>
-            {cartItems &&
-              cartItems.map((each) => {
+            {allcartItems &&
+              allcartItems.map((each) => {
                 return (
                   <div className="flex justify-between items-center my-5">
                     <div className="flex items-center space-x-5">
@@ -59,7 +58,7 @@ const ConfirmOrder = () => {
               })}
           </div>
         </div>
-        <div className="">
+        <div className="basis-1/3">
           <div className="p-10 bg-white shadow">
             <h2 className="semi-heading hover:text-[#081828] cursor-auto border-b p-3">
               Order Summery
@@ -67,7 +66,10 @@ const ConfirmOrder = () => {
             <div className="my-3">
               <p>Subtotal: {totalAmount}</p>
             </div>
-            <button onClick={() => router.push("/payment")} className="text-white bg-[#0167f3] hover:bg-[#081828] transition duration-300 p-3 rounded-sm my-3">
+            <button
+              onClick={() => router.push("/payment")}
+              className="text-white bg-[#0167f3] hover:bg-[#081828] transition duration-300 p-3 rounded-sm my-3"
+            >
               Prcoess to Payment
             </button>
           </div>

@@ -12,9 +12,10 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { localHostState } from "../../redux/actions/cartAction";
 const HeadMid = () => {
+  const { allcartItems } = useSelector((state) => state.cart);
   const [showCart, setShowCart] = useState(false);
   const visibleCartView = () => {
-    if (allcartItems.length > 0) {
+    if (allcartItems) {
       setShowCart(!showCart);
     }
   };
@@ -23,10 +24,8 @@ const HeadMid = () => {
   };
   const [inputVal, setInputVal] = useState("");
   const router = useRouter();
-  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
 
-  const { allcartItems } = useSelector((state) => state.cart);
 
   //Click handle
   const clickHandle = (index) => {
@@ -97,7 +96,7 @@ const HeadMid = () => {
         >
           <ShoppingCartIcon className="h-4 transition duration-300 group-hover:text-white" />
           <span className="absolute top-[-7px] right-[-5px] rounded-full bg-[#081828] px-[.4rem] text-white">
-            {allcartItems.length}
+            {allcartItems && allcartItems.length}
           </span>
         </div>
       </div>
@@ -111,7 +110,7 @@ const HeadMid = () => {
               <XIcon className="h-7 text-white" />
             </div>
             <div className="flex border-b justify-between py-3 text-[#081828]">
-              <p>{allcartItems.length} items</p>
+              <p>{allcartItems && allcartItems.length} items</p>
               <div className="hover:text-[#0167f3] transition duration-300">
                 <Link href="/cart"> View Cart</Link>
               </div>

@@ -19,22 +19,34 @@ const Orders = () => {
       ) : (
         <div className="sm:px-10 py-10 bg-[#f9f9f9]">
           <div className="bg-white border shadow-3xl">
-            <div className="p-3 md:flex text-[#081828] capitalize justify-center">
-              <div className="flex m-auto basis-1/4">
-                <div className="w-full text-center md:text-start md:basis-2/3">
+            <div className="justify-center px-10 py-3 capitalize md:flex">
+                <div className="text-center basis-1/3 md:text-start">
                   Order Id
                 </div>
+              <div className="text-center basis-1/3 md:text-start">
+                Status
               </div>
-              <div className="text-center basis-1/4 md:text-start">
-                Quantity
-              </div>
-              <div className="text-center basis-1/4 md:text-start">
-                price
-              </div>
-              <div className="text-center basis-1/4 md:text-start">
-                status
+              <div className="text-center basis-1/3 md:text-start">
+                amount
               </div>
             </div>
+            {
+              order && order.map((each) => {
+                return(
+                  <div className="justify-center px-10 py-3 capitalize border-t md:flex">
+                  <div className="text-center basis-1/3 md:text-start">
+                    {each._id}
+                  </div>
+                <div className="text-center basis-1/3 md:text-start">
+                  {each.orderStatus}
+                </div>
+                <div className="text-center basis-1/3 md:text-start">
+                  {each.totalPrice}
+                </div>
+              </div>
+                )
+              })
+            }
           </div>
         </div>
       )}

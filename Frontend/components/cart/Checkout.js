@@ -21,12 +21,9 @@ const CheckoutComponent = () => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [phoneNo, setPhoneNo] = useState(0);
-  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const alert = useAlert();
   const router = useRouter();
-
-
   const submitHandle = (e) => {
     e.preventDefault();
     if (phoneNo.length < 10 || phoneNo.length > 10) {
@@ -34,18 +31,11 @@ const CheckoutComponent = () => {
       return;
     }
     dispatch(
-      saveShippingInfo([{ address, city, postCode, country, state, phoneNo },products])
+      saveShippingInfo({ address, city, postCode, country, state, phoneNo })
     );
      router.push("/confirmorder");
   };
-
-  useEffect(() => {
-    const product = JSON.parse(localStorage.getItem("cartItems"));
-    if(product.length === 0){
-      router.push("/error");
-    }
-    setProducts(product);
-  }, []);
+  
   return (
     <div className="md:p-10 bg-[#f9f9f9]">
       <div className="hidden py-5 bg-white shadow-3xl sm:block">
@@ -55,7 +45,7 @@ const CheckoutComponent = () => {
         <h2 className="text-xl text-center big-heading">Shipping Details</h2>
         <form
           onSubmit={submitHandle}
-          className="w-[50%] min-w-[200px] mx-auto my-5"
+          className="md:w-[50%] w-[80%] min-w-[200px] mx-auto my-5"
         >
           <div className="flex items-center p-2 m-2 space-x-6 border">
             <HomeIcon />

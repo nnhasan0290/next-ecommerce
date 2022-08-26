@@ -12,7 +12,6 @@ export const stripePromise = loadStripe(
 );
 
 const Payment = () => {
-  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const amount = useSelector((state) => state.totalAmount);
 
   const [clientSecret, setClientSecret] = useState("");

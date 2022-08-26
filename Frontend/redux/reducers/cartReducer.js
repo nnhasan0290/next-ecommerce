@@ -3,11 +3,12 @@ export const cartReducer = (state = {cartItems:[],shippingInfo:{}}, action) => {
   switch (action.type) {
     case SAVE_SHIPPING_INFO:
       return {
-        shippingInfo: action.payload[0],
-        cartItems: action.payload[1]
+        ...state,
+        shippingInfo: action.payload
       };
       case LOCALHOST: 
       return{
+        ...state,
         allcartItems: action.payload
       }
     default:

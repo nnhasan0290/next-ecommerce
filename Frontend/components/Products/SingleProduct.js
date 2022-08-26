@@ -7,11 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getSingleProduct } from "../../redux/actions/productAction";
 import Loader from "../layout/Loader";
+import { localHostState } from "../../redux/actions/cartAction";
+import { useAlert } from "react-alert";
 const SingleProduct = () => {
   const router = useRouter();
+  const alert = useAlert();
   const { loading, product, success } = useSelector(
     (state) => state.singleProduct
   );
+  const {_id,name,images,discount,category,stock} = product;
   const [mainImg, setMainImg] = useState("");
   const dispatch = useDispatch();
   const {
@@ -29,6 +33,31 @@ const SingleProduct = () => {
       dispatch(getSingleProduct(pid));
     }
   }, [isReady]);
+
+  const clickHandle = () => {
+    const previous = localStorage.getItem("cartItems");
+    if(!previous){
+      const newItem = [{_id,price,name,discount,images,category,stock,quantity:1}];
+      localStorage.setItem("cartItems",JSON.stringify(newItem));
+      dispatch(localHostState(newItem));
+    }else{
+      const oldItems = JSON.parse(previous);
+      
+      const isExist = oldItems.find((each) => each._id === _id);
+      
+      if(isExist){
+        alert.show("Already added");
+        return;
+      }else {
+        const modified_items = [...oldItems, {_id,price,discount,name,images,category,stock,quantity:1}];
+        console.log(modified_items);
+        localStorage.setItem("cartItems", JSON.stringify(modified_items));
+        dispatch(localHostState(modified_items));
+      }
+    }
+    
+    alert.success("Product has been added to cart");
+  }
 
   return (
     <>
@@ -79,7 +108,7 @@ const SingleProduct = () => {
               <h1 className="text-3xl font-bold">${price}</h1>
               <p className="tracking-wide leading-7">{product?.description}</p>
               <div className="flex space-x-5 text-white">
-                <button className="p-3 rounded-md border bg-[#0167f3] hover:bg-[#081828] transition duration-300 ease ">
+                <button onClick={clickHandle} className="p-3 rounded-md border bg-[#0167f3] hover:bg-[#081828] transition duration-300 ease ">
                   Add to Cart{" "}
                 </button>
                 <button className="hidden sm:flex items-center p-3 rounded-md border bg-[#0167f3] hover:bg-[#081828] transition duration-300 ease space-x-2">

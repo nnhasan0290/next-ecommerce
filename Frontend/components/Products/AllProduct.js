@@ -54,7 +54,7 @@ const AllProduct = () => {
         <Loader />
       ) : (
         <>
-          <div className="md:w-[25%] sm:my-10 ml-10">
+          <div className="md:w-[25%] sm:my-10 sm:ml-10">
             <div className="filtering">
               <Heading text="Search Product" />
               <form
@@ -178,7 +178,7 @@ const AllProduct = () => {
               </div>
             </div>
           </div>
-          <div className="md:w-[75%] sm:my-10 mr-10">
+          <div className="md:w-[75%] sm:my-10 sm:mr-10">
             <div className="hidden px-3 w-full sm:block">
               <div className="flex items-center p-3 space-x-2 bg-white shadow-3xl">
                 <label className="" htmlFor="sort">

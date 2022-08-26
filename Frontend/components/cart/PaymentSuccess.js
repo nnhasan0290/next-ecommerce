@@ -37,7 +37,7 @@ const PaymentSuccess = (props) => {
           }
             dispatch(createOrder(data));
          
-            localStorage.setItem("cartItems",[]);
+            localStorage.setItem("cartItems",JSON.stringify([]));
             localStorage.setItem("order","");
             setMessage("Payment succeeded!");
           

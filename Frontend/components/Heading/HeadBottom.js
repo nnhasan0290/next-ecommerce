@@ -70,7 +70,7 @@ const HeadBottom = () => {
           <Link href="/cart">Cart</Link>
         </li>
         <li className="py-3 list-none">
-          <Link href="/blog">Blog</Link>
+          <Link href="/orders">Orders</Link>
         </li>
       </nav>
       <div className="hidden justify-center items-center md:flex basis-1/3">

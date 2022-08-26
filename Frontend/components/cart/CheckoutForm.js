@@ -11,12 +11,12 @@ export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
-  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+  const { shippingInfo, allcartItems } = useSelector((state) => state.cart);
   const amount = useSelector((state) => state.totalAmount);
 
   const [message, setMessage] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const ordered_items = cartItems.map((each) => {
+  const ordered_items = allcartItems.map((each) => {
     return {
       name: each.name,
       price: each.price,
@@ -25,7 +25,6 @@ export default function CheckoutForm() {
       quantity: each.quantity,
     };
   });
-  console.log(ordered_items);
   const localOrder = {
     shippingInfo: {
       ...shippingInfo,

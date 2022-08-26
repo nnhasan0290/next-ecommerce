@@ -50,10 +50,10 @@ const SingleCartItem = ({ product, index }) => {
         </select>
       </div>
       <div className="py-2 text-center basis-1/6 md:text-start">
-        <p>${product.price}</p>
+        <p>${quantity*product.price}</p>
       </div>
       <div className="py-2 text-center basis-1/6 md:text-start">
-        ${product.discount}
+        {product.discount}%
       </div>
       <div onClick={handleDelete} className="p-1 py-2 basis-1/6">
         <XIcon className="m-auto h-5 text-white bg-red-500 rounded-full cursor-pointer md:m-0 hover:bg-[#081828] transition duration-300" />
