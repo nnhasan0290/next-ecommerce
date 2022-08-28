@@ -2,12 +2,11 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { ChevronDownIcon, MenuIcon } from "@heroicons/react/outline";
+import { MenuIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useState } from "react";
 
 const HeadBottom = () => {
-  const [submenu, setSubmenu] = useState(false);
   const [menu, setMenu] = useState(false);
 
   return (
@@ -26,7 +25,7 @@ const HeadBottom = () => {
         }`}
       >
         <li className="py-3 list-none">
-          <Link className="p-" href="/">
+          <Link className="" href="/">
             Home
           </Link>
         </li>
@@ -34,37 +33,11 @@ const HeadBottom = () => {
           <Link href="/product">Shop</Link>
         </li>
         <li
-          onClick={() => setSubmenu(!submenu)}
-          className="flex relative z-20 flex-col py-3 cursor-pointer md:items-center"
+          className="flex z-20 flex-col py-3 cursor-pointer md:items-center"
         >
-          {" "}
-          <div className="flex">
-            <p>About us</p>{" "}
-            <span className="ml-3">
-              <ChevronDownIcon className="h-5" />
-            </span>
-          </div>
-          <ul
-            className={`static md:absolute top-[100%] md:shadow-3xl  px-5 flex md:items-center flex-col md:bg-white sm:w-[230px]  h-[0px] overflow-y-hidden justify-evenly ${
-              submenu && "h-[220px]"
-            } transition-[height] duration-500 `}
-          >
-            <li className="list-none">
-              <Link href="/one">Option One</Link>
-            </li>
-            <li className="list-none">
-              <Link href="/two">Option One</Link>
-            </li>
-            <li className="list-none">
-              <Link href="/three">Option One</Link>
-            </li>
-            <li className="list-none">
-              <Link href="/four">Option One</Link>
-            </li>
-            <li className="list-none">
-              <Link href="/five">Option One</Link>
-            </li>
-          </ul>
+           <Link className="" href="/admin/dashboard">
+            Dashboard
+          </Link>
         </li>
         <li className="py-3 list-none">
           <Link href="/cart">Cart</Link>
