@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ConfirmOrder from "../components/cart/ConfirmOrder";
+import Contact from "../components/footer";
 import Heading from "../components/Heading/Heading";
 
 const Checkout = () => {
@@ -10,6 +11,7 @@ const Checkout = () => {
       </Head>
       <Heading />
       <ConfirmOrder />
+      <Contact/>
     </>
   );
 };

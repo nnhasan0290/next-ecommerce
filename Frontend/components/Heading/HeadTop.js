@@ -10,8 +10,7 @@ const HeadTop = () => {
       </div>
       <div className="hidden space-x-3 sm:flex basis-1/3">
         <Link href={"/"}>Home</Link>
-        <Link href={"/aboutus"}>About Us</Link>
-        <Link href={"contactus"}>Contact Us</Link>
+        <Link href="mailto: nazmulhasan0290@gmail.com">Contact Me</Link>
       </div>
       <div className="flex justify-center items-center space-x-3 w-full sm:basis-1/3">
         <p>Hello</p>

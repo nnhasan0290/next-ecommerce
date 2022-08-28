@@ -15,8 +15,6 @@ const SingleProduct = () => {
   const { loading, product, success } = useSelector(
     (state) => state.singleProduct
   );
-  const {_id,name,images,discount,category,stock} = product;
-  const [mainImg, setMainImg] = useState("");
   const dispatch = useDispatch();
   const {
     isReady,
@@ -35,6 +33,7 @@ const SingleProduct = () => {
   }, [isReady]);
 
   const clickHandle = () => {
+    const {_id,price,name,discount,images,category,stock} = product;
     const previous = localStorage.getItem("cartItems");
     if(!previous){
       const newItem = [{_id,price,name,discount,images,category,stock,quantity:1}];
@@ -68,20 +67,22 @@ const SingleProduct = () => {
           <div className="bg-white md:flex">
             <div className="sm:p-5 basis-1/2">
               <div className="flex justify-center border">
-                <Image
+              {product && (
+                  <Image
                   className=""
-                  src={mainImg ? mainImg : product && product.images[0].url}
+                  src={product.images[0].url}
                   alt=""
                   width={400}
                   height={300}
                 />
+              )}
               </div>
               <div>
                 <div className="flex justify-center py-2 space-x-5 border">
                   {product &&
-                    product.images.map((each) => {
+                    product.images.map((each,i) => {
                       return (
-                        <div className="" onClick={() => setMainImg(each.url)}>
+                        <div key={i} className="" onClick={() => setMainImg(each.url)}>
                           <Image
                             src={each.url}
                             alt=""
@@ -97,7 +98,7 @@ const SingleProduct = () => {
             </div>
             <div className="flex flex-col justify-around p-10 basis-1/2">
               <div>
-                <h1 className="text-3xl uppercase semi-heading">
+                <h1 className="text-3xl uppercase semi-heading hover:text-[#081828] cursor-auto">
                   {product && product.name}
                 </h1>
                 <p className="font-semibold capitalize">
@@ -128,11 +129,11 @@ const SingleProduct = () => {
                 </h1>
                 <div className="items-center lg:space-x-3 lg:flex">
                   <p>5 stars-{28}</p>
-                  <StarRatingComponent value={5} className="text-lg" />
+                  <StarRatingComponent name="review" value={5} className="text-lg" />
                 </div>
                 <div className="items-center lg:space-x-3 lg:flex">
                   <p>4 stars-38</p>
-                  <StarRatingComponent value={4} className="text-lg" />
+                  <StarRatingComponent name="review" value={4} className="text-lg" />
                 </div>
                 <BasicModal />
               </div>
@@ -140,20 +141,20 @@ const SingleProduct = () => {
             <div className="flex flex-col p-10 w-full bg-white rounded-md">
               <h1 className="text-xl semi-heading">Latest Reviews</h1>
               {product &&
-                product.reviews.map((each) => {
+                product.reviews.map((each,i) => {
                   return (
-                    <div className="flex my-5 space-x-5">
+                    <div key={i} className="flex my-5 space-x-5">
                       <img
                         src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                         alt=""
                         className="h-[50px] w-[50px] rounded-full"
                       />
-                      <div className="p-5 rounded-md border relative after:content-['']  after:absolute after:top-[13px] after:border-[10px] after:right-[100%]  after:mt-1 after:border-transparent after:border-r-[#e5e5e5] after:z-1 before:content[''] before:top-[14px] before:right-[100%] before:border-[9px] before:absolute before:border-transparent before:border-r-white before:z-20 before:mt-1 w-full">
-                        <h4 className="leading-5 semi-heading">
+                      <div className="p-5 rounded-md border relative after:content-['']  after:absolute after:top-[13px] after:border-[10px] after:right-[100%]  after:mt-1 after:border-transparent after:border-r-[#e5e5e5] after:z-1 before:content[''] before:top-[14px] before:right-[100%] before:border-[9px] before:absolute before:border-transparent before:border-r-white before:z-20 before:mt-1 w-full shadow-3xl">
+                        <h4 className="leading-5 semi-heading hover:text-[#081828] cursor-auto">
                           {each.subject}
                         </h4>
                         <p className="leding-4">{each.name}</p>
-                        <StarRatingComponent
+                        <StarRatingComponent name="review"
                           className="text-xl"
                           value={each.rating}
                         />

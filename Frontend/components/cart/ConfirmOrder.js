@@ -5,13 +5,11 @@ import { useRouter } from "next/router";
 
 const ConfirmOrder = () => {
   const { shippingInfo, allcartItems } = useSelector((state) => state.cart);
-  console.log(shippingInfo,allcartItems);
   const router = useRouter();
   const dispatch = useDispatch();
-    const totalAmount = allcartItems.reduce((total, each) => {
-      return total + each.quantity * each.price;
-    }, 0);
-    dispatch({ type: "GET_TOTAL_AMOUNT", payload: totalAmount });
+  const totalAmount = allcartItems.reduce((total, each) => {
+    return total + each.quantity * each.price;
+  }, 0);
 
   return (
     <div className="md:p-10 bg-[#f9f9f9] capitalize">
@@ -35,9 +33,12 @@ const ConfirmOrder = () => {
               Your Cart Items
             </h2>
             {allcartItems &&
-              allcartItems.map((each) => {
+              allcartItems.map((each, i) => {
                 return (
-                  <div className="flex justify-between items-center my-5">
+                  <div
+                    key={i}
+                    className="flex justify-between items-center my-5"
+                  >
                     <div className="flex items-center space-x-5">
                       <img
                         src={each.images[0].url}
@@ -67,7 +68,10 @@ const ConfirmOrder = () => {
               <p>Subtotal: {totalAmount}</p>
             </div>
             <button
-              onClick={() => router.push("/payment")}
+              onClick={() => {
+                dispatch({ type: "GET_TOTAL_AMOUNT", payload: totalAmount });
+                router.push("/payment");
+              }}
               className="text-white bg-[#0167f3] hover:bg-[#081828] transition duration-300 p-3 rounded-sm my-3"
             >
               Prcoess to Payment

@@ -5,10 +5,12 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import { MenuIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useState } from "react";
+import {useRouter} from "next/router";
+
 
 const HeadBottom = () => {
   const [menu, setMenu] = useState(false);
-
+  const router = useRouter();
   return (
     <div className="flex relative justify-center px-10 border-t border-b">
       <div
@@ -24,25 +26,25 @@ const HeadBottom = () => {
           menu ? "visible h-[auto]" : "invisible md:visible md:h-auto h-[0]"
         }`}
       >
-        <li className="py-3 list-none">
+        <li className={`hover:text-[#0167f3] transition duration-300 py-3 list-none ${router.pathname === "/" && "text-[#0167f3]"}`}>
           <Link className="" href="/">
             Home
           </Link>
         </li>
-        <li className="py-3 list-none">
+        <li className={`hover:text-[#0167f3] transition duration-300 py-3 list-none ${router.pathname === "/product" && "text-[#0167f3]"}`}>
           <Link href="/product">Shop</Link>
         </li>
         <li
-          className="flex z-20 flex-col py-3 cursor-pointer md:items-center"
+          className={`flex flex-col py-3 transition duration-300 cursor-pointer z -20 hover:text-[#0167f3] md:items-center`}
         >
            <Link className="" href="/admin/dashboard">
             Dashboard
           </Link>
         </li>
-        <li className="py-3 list-none">
+        <li className={`hover:text-[#0167f3] transition duration-300 py-3 list-none ${router.pathname === "/cart" && "text-[#0167f3]"}`}>
           <Link href="/cart">Cart</Link>
         </li>
-        <li className="py-3 list-none">
+        <li className={`hover:text-[#0167f3] transition duration-300 py-3 list-none ${router.pathname === "/orders" && "text-[#0167f3]"}`}>
           <Link href="/orders">Orders</Link>
         </li>
       </nav>

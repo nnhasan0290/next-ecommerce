@@ -11,14 +11,14 @@ const Sidebar = () => {
   return (
     <>
     <div className="w-[20%] border hidden fixed sm:block h-full top-0 bottom-0 overflow-auto p-3 box-border ">
-      <Link href="/">
+      <a href="/">
         <Image
           className="cursor-pointer"
           src="/logo.svg"
           width={200}
           height={70}
         />
-      </Link>
+      </a>
       <Link href="/admin/dashboard">
         <div className="mx-2 text-medium">
           <div className="each-sidebar-item">

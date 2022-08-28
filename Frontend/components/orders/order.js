@@ -31,9 +31,9 @@ const Orders = () => {
               </div>
             </div>
             {
-              order && order.map((each) => {
+              order && order.map((each,i) => {
                 return(
-                  <div className="justify-center px-10 py-3 capitalize border-t md:flex">
+                  <div key={i} className="justify-center px-10 py-3 capitalize border-t md:flex">
                   <div className="text-center basis-1/3 md:text-start">
                     {each._id}
                   </div>

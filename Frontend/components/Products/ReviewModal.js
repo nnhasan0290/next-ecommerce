@@ -37,7 +37,6 @@ export default function BasicModal() {
   } = useRouter();
   const handleClose = () => {
     setOpen(false);
-    dispatch(getSingleProduct(pid));
   };
   const dispatch = useDispatch();
 
@@ -93,7 +92,7 @@ export default function BasicModal() {
           <form action="" className="" onSubmit={submitHandle}>
             <div className="flex-wrap p-4 capitalize sm:flex border-y">
               <div className="p-3 basis-1/2">
-                <label for="name">Your Name</label>
+                <label htmlFor="name">Your Name</label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -104,7 +103,7 @@ export default function BasicModal() {
                 />
               </div>
               <div className="p-3 basis-1/2">
-                <label for="subject">Subject</label>
+                <label htmlFor="subject">Subject</label>
                 <input
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
@@ -115,7 +114,7 @@ export default function BasicModal() {
                 />
               </div>
               <div className="p-3 basis-1/2">
-                <label for="email">your email</label>
+                <label htmlFor="email">your email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} className="border" name="subject" type="email" />
               </div>
               <div className="p-3 basis-1/2">

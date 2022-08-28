@@ -41,14 +41,14 @@ const HeadMid = () => {
   return (
     <div className="flex relative justify-between pt-5 pb-2 mx-10">
       <div className="md:basis-1/4 basis-1/2">
-        <Link href="/">
+        <a href="/">
           <Image
             className="cursor-pointer"
             src={Logo}
             width={200}
             height={70}
           />
-        </Link>
+        </a>
       </div>
       <div className="hidden justify-center items-center w-full basis-2/4 md:flex">
         <div className="flex relative rounded-md border basis-3/4">
@@ -117,7 +117,7 @@ const HeadMid = () => {
             </div>
             {allcartItems &&
               allcartItems.map((each, index) => (
-                <div>
+                <div key={index}>
                   <div className="flex pb-3 space-x-5 border-b">
                     <div className="rounded-sm border cursor-pointer basis-1/4">
                       <Image

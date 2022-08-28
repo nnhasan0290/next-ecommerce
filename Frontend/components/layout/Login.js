@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/actions/userAction";
 import {useRouter} from "next/router";
+import Link from "next/link"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,7 +48,7 @@ const Login = () => {
               required
             />
           </div>
-          <div className="flex justify-between items-center each-input">
+          <div className="each-input">
             <div>
               <input
                 className="h-[18px] w-[18px] mr-3"
@@ -57,7 +58,6 @@ const Login = () => {
               />
               <label htmlFor="remember">Remember me</label>
             </div>
-            <a href="#">Forgot password?</a>
           </div>
           <input
             type="submit"
@@ -65,6 +65,13 @@ const Login = () => {
             className="cursor-pointer bg-[#0167f3] text-white hover:bg-[#081828] transition duration-300"
           />
         </form>
+        <div className="flex justify-center items-center my-3 space-x-3">
+          <p>Don't have an account?</p>
+          <div className="text-[#0167f3]">
+            
+        <Link href="/register"> Register</Link>
+          </div>
+        </div>
       </div>
     </div>
   );

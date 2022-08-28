@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import BasicAlerts from "../components/Alert";
 import { useAlert } from "react-alert";
 import Loader from "../components/layout/Loader";
+import Contact from "../components/footer";
 
 export default function Home({ data }) {
   const alert = useAlert();
@@ -34,6 +35,7 @@ export default function Home({ data }) {
           <main className="">
             <HomeProducts products={data.products} />
           </main>
+          <Contact/>
         </div>
       )}
     </>
