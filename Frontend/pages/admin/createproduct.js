@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Fragment } from "react";
 import DashContent from "../../components/dashboard/DashContent";
-import { PieChart } from "../../components/dashboard/PieChart";
 import Sidebar from "../../components/dashboard/Sidebar";
 
 const Dashboard = () => {
@@ -13,7 +12,7 @@ const Dashboard = () => {
       </Head>
       <main>
         <Sidebar />
-        <PieChart/>
+        <DashContent />
       </main>
     </Fragment>
   );
