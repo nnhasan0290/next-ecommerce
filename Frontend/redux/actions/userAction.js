@@ -39,7 +39,7 @@ export const loginUser = (myForm) => async (dispatch) => {
       withCredentials: true,
     };
     const { data } = await axios.post(
-      `http://localhost:3001/api/user/login`,
+      `${process.env.NEXT_PUBLIC_GITPOD_HOST}/api/user/login`,
       myForm,
       config
     );

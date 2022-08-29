@@ -3,7 +3,6 @@ import HomeProducts from "../components/Homepage/HomeProducts";
 import { loadUser } from "../redux/actions/userAction.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import BasicAlerts from "../components/Alert";
 import { useAlert } from "react-alert";
 import Loader from "../components/layout/Loader";
 import Contact from "../components/footer";
