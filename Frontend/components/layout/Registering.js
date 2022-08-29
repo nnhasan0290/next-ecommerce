@@ -1,8 +1,9 @@
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { createUserAction } from "../../redux/actions/userAction";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {useAlert} from "react-alert";
 
 const Registering = () => {
   const [fname, setFname] = useState("");
@@ -12,10 +13,11 @@ const Registering = () => {
   const [confirmPass, setconfirmPass] = useState("");
   const [inputImg, setInputImg] = useState("");
   const router = useRouter();
+  const alert = useAlert();
 
   const dispatch = useDispatch();
-  const state = useSelector(state => state.newUser);
-  console.log(state);
+  const {error,success} = useSelector(state => state.newUser);
+  console.log(error,success);
 
   //submit handler method ====================================
   const submitHandler = (e) => {
@@ -28,7 +30,6 @@ const Registering = () => {
     register_form.set("confirmPass", confirmPass);
     register_form.set("image", inputImg);
     dispatch(createUserAction(register_form));
-    router.push("/login")
   };
 
   //file Upload ==============================================
@@ -41,6 +42,19 @@ const Registering = () => {
       setInputImg(readerEvent.target.result);
     };
   };
+  useEffect(() => {
+    if(success){
+      alert.show("Login with your email and password now")
+      setTimeout(()=>{
+        router.push("/login");
+      },1000)
+      
+    }
+    if(error){
+      alert.error(error);
+      dispatch({type:"CLEAR_ERROR"});
+    }
+  },[success,error])
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#f9f9f9]">
       <div className="p-10 w-full bg-white border sm:w-1/2 shadow-3xl">
@@ -90,7 +104,7 @@ const Registering = () => {
                 setemail(e.target.value);
               }}
               className="text-input"
-              type="text"
+              type="email"
               required
             />
           </div>
@@ -152,7 +166,7 @@ const Registering = () => {
         </form>
         <p className="my-2 text-center">
           Already have an account?{" "}
-          <a className="text-[#0167f3]" href="/signin">
+          <a className="text-[#0167f3]" href="/login">
             login now
           </a>
         </p>

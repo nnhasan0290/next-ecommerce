@@ -4,6 +4,12 @@ import User from "../Models/userModel.js";
 import jwt from "jsonwebtoken";
 
 export const createUser = catchAsyncError(async (req, res, nex) => {
+  if(req.body.password !== req.body.confirmPass){
+    throw {message: "password is not matched", statusCode: 400};
+  }
+  if(!req.body.image){
+    throw {message: "image should be given", statusCode: 400};
+  }
   const upload_img = await cloudinary.uploader.upload(req.body.image, {
     folder: "Users",
   });
@@ -37,6 +43,14 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
     token,
   });
 });
+
+export const logoutUser = catchAsyncError((req,res,nex) => {
+  console.log(req);
+  res.status(200).cookie("token",null).json({
+    success: true,
+    message: "logged out successfully"
+  })
+})
 
 //Load user controller
 export const loadUser = catchAsyncError(async (req, res, nex) => {

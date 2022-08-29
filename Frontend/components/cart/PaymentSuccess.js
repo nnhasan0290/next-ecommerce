@@ -10,7 +10,7 @@ import {useAlert} from "react-alert";
 const PaymentSuccess = (props) => {
   const [message, setMessage] = useState(null);
   const stripe = useStripe();
-  const {success,loading} = useSelector(state => state.orderCreate);
+  const {success,loading,error} = useSelector(state => state.orderCreate);
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -32,10 +32,14 @@ const PaymentSuccess = (props) => {
         case "succeeded":
           const data = localStorage.getItem("order");
           if(data === ""){
-            alert.error("Product has already bee added");
+            alert.error("Product has already been added");
             return;
           }
             dispatch(createOrder(data));
+            if(error){
+              alert.error(error);
+              dispatch({type:"CLEAR_ERROR"});
+            }
          
             localStorage.setItem("cartItems",JSON.stringify([]));
             localStorage.setItem("order","");

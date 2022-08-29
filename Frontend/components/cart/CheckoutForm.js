@@ -48,7 +48,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://3000-nnhasan0290-nextecommer-oyfekk44ino.ws-us63.gitpod.io//paymentsuccess`,
+        return_url: `http://localhost:3000/paymentsuccess`,
       },
     });
 

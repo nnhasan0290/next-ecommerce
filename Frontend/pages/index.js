@@ -1,30 +1,11 @@
 import Head from "next/head";
 import HomeProducts from "../components/Homepage/HomeProducts";
-import { loadUser } from "../redux/actions/userAction.js";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useAlert } from "react-alert";
 import Loader from "../components/layout/Loader";
 import Contact from "../components/footer";
 
 export default function Home({ data }) {
-  const alert = useAlert();
-  const { isAuthenticated, user, success, error, loading } = useSelector(
-    (state) => state.loadUser
-  );
-  
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(loadUser());
-  //   if (error) {
-  //     alert.error("load user failed or cookie has been expired");
-  //   }
-  // }, []);
   return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
         <div>
           <Head>
             <title>Create Next App</title>
@@ -36,9 +17,7 @@ export default function Home({ data }) {
           </main>
           <Contact/>
         </div>
-      )}
-    </>
-  );
+      )
 }
 
 export async function getServerSideProps() {

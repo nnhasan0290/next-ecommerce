@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import {
   ClipboardListIcon,
   PlusCircleIcon,
@@ -40,7 +41,7 @@ const Sidebar = () => {
             <ChevronDownIcon className="h-6" />
             <p>Product(s)</p>
           </div>
-          <div className={`ml-2  transition duration-500 ease-in-out ${!visibility && "invisible opacity-0"} peer-hover:visible hover:visible peer-hover:opacity-100 hover:opacity-100`}>
+          <div className={`ml-2  transition duration-500 ease-in-out ${!visibility ? "invisible opacity-0 h-0" : "h-[5em]"} peer-hover:visible hover:visible peer-hover:opacity-100 peer-hover:h-[5em] hover:h-[5em] hover:opacity-100 h-0`}>
             <div className={`each-sidebar-item  ${router.pathname === "/admin/allproduct" && "text-[#0167f3]  scale-105"}`}>
               <ClipboardListIcon className="h-5" />
               <Link href={"/admin/allproduct"}>All</Link>
@@ -49,6 +50,10 @@ const Sidebar = () => {
               <PlusCircleIcon className="h-5" />
               <Link href="/admin/createproduct">Create</Link>
             </div>
+          </div>
+           <div className={`each-sidebar-item ${router.pathname === "/admin/orders" && "text-[#0167f3]  scale-105"}`}>
+            <ListAltIcon className="h-6" />
+            <Link href="/admin/orders">Orders</Link>
           </div>
         </div>
     </div>

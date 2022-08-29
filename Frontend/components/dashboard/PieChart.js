@@ -56,14 +56,14 @@ export function PieChart() {
       </div>
       <div className="justify-center capitalize sm:space-x-5 sm:flex">
         <a
-          href="#"
+          href="/admin/allproduct"
           className="bg-[#081828] text-white p-10 rounded-full w-[120px] h-[120px] flex items-center justify-center text-center mx-auto sm:mx-0 my-3 hover:bg-[#0167f3] transition duration-300"
         >
           {" "}
           products <br /> {products?.length}
         </a>
         <a
-          href="#"
+          href="/admin/orders"
           className="bg-[#081828] text-white p-10 rounded-full w-[120px] h-[120px] flex items-center justify-center text-center  mx-auto sm:mx-0 my-3 hover:bg-[#0167f3] transition duration-300"
         >
           Orders <br /> {order?.length}

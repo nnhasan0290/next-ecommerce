@@ -57,6 +57,11 @@ const {Schema} = mongoose;
     type: Number,
     required: true
    },
+   user: {
+    type: mongoose.Schema.ObjectId,
+    required: true,
+    ref: "User"
+   },
    orderStatus: {
     type: String,
     required: true,

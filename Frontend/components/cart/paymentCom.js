@@ -24,7 +24,7 @@ const Payment = () => {
   useEffect(() => {
     axios
       .post(
-        `https://3001-nnhasan0290-nextecommer-oyfekk44ino.ws-us63.gitpod.io/api/payment/process`,
+        `${process.env.NEXT_PUBLIC_GITPOD_HOST}/api/payment/process`,
         amount,
         config
       )
@@ -44,11 +44,11 @@ const Payment = () => {
         <CustomizedSteppers className="" activeStep={3} />
       </div>
     <div className="p-5 my-10 bg-white md:p-10 App shadow-3xl">
-      {clientSecret && (
+      {clientSecret ? (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
-      )}
+      ): (<h2>something went wrong</h2>)}
     </div>
     </div>
     </>

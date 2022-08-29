@@ -1,24 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyOrders } from "../../redux/actions/orderAction";
-import Heading from "../Heading/Heading";
-import Loader from "../layout/Loader";
+import { getOrders } from "../../redux/actions/orderAction";
 
-const Orders = () => {
-  const dispatch = useDispatch();
-  const { loading, orders } = useSelector((state) => state.getMyOrder);
-  console.log(orders);
-  useEffect(() => {
-    dispatch(getMyOrders());
+const AdminOrders = () => {
+	const dispatch = useDispatch();
+  const { loading, order } = useSelector((state) => state.getOrder);
+	useEffect(() => {
+    dispatch(getOrders());
   }, []);
-  return (
-    <>
-      <Heading />
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="sm:px-10 py-10 bg-[#f9f9f9]">
-          <div className="bg-white border shadow-3xl">
+	return(
+		<>
+          <div className=" sm:w-[80%] sm:float-right">
+          <h2 className="big-heading text-center">Orders</h2>
+          <div className="bg-white border shadow-3xl my-10">
             <div className="justify-center px-10 py-3 capitalize md:flex">
                 <div className="text-center basis-1/3 md:text-start">
                   Order Id
@@ -31,7 +25,7 @@ const Orders = () => {
               </div>
             </div>
             {
-              orders && orders.map((each,i) => {
+              order && order.map((each,i) => {
                 return(
                   <div key={i} className="justify-center px-10 py-3 capitalize border-t md:flex">
                   <div className="text-center basis-1/3 md:text-start">
@@ -49,8 +43,7 @@ const Orders = () => {
             }
           </div>
         </div>
-      )}
-    </>
-  );
-};
-export default Orders;
+        </>
+		)
+}
+export default AdminOrders;

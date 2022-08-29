@@ -7,10 +7,9 @@ const ConfirmOrder = () => {
   const { shippingInfo, allcartItems } = useSelector((state) => state.cart);
   const router = useRouter();
   const dispatch = useDispatch();
-  const totalAmount = allcartItems.reduce((total, each) => {
+    const totalAmount = allcartItems.reduce((total, each) => {
     return total + each.quantity * each.price;
   }, 0);
-
   return (
     <div className="md:p-10 bg-[#f9f9f9] capitalize">
       <div className="hidden py-5 bg-white shadow-3xl sm:block">

@@ -7,3 +7,6 @@ export const ORDER_GET_REQ = "ORDER_GET_REQ";
 export const ORDER_GET_SUCCESS = "ORDER_GET_SUCCESS";
 export const ORDER_GET_FAIL = "ORDER_GET_FAIL";
 
+export const MY_ORDER_GET_REQ = "MY_ORDER_GET_REQ";
+export const MY_ORDER_GET_SUCCESS = "MY_ORDER_GET_SUCCESS";
+export const MY_ORDER_GET_FAIL = "MY_ORDER_GET_FAIL";

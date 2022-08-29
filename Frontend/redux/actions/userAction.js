@@ -9,6 +9,8 @@ import {
   LOAD_USER_REQ,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAILED,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILED,
 } from "../constants/userCons";
 export const createUserAction = (myForm) => async (dispatch) => {
   try {
@@ -72,5 +74,20 @@ export const loadUser = () => async (dispatch) => {
       dispatch({type: LOAD_USER_FAILED, payload: error.message})
     }
 
+  }
+};
+
+//LOAD USER
+export const logoutUser = () => async (dispatch) => {
+  try {
+
+    const { data } = await axios.get(`http://localhost:3001/api/user/logout`, {
+      withCredentials: true,
+    });
+    console.log(data);
+
+    dispatch({ type: LOGOUT_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({type: LOGOUT_USER_FAILED, payload: error.response.data.error});
   }
 };

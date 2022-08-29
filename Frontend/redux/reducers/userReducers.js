@@ -8,6 +8,8 @@ import {
   LOGIN_USER_FAILED,
   LOGIN_USER_REQ,
   LOGIN_USER_SUCCESS,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILED,
 } from "../constants/userCons";
 
 export const newUserReducer = (state = {}, action) => {
@@ -31,6 +33,11 @@ export const newUserReducer = (state = {}, action) => {
         error: action.payload,
       };
       break;
+    case "CLEAR_ERROR":
+    return{
+      ...state,
+      error:null
+    }
 
     default:
       return state;
@@ -78,6 +85,28 @@ export const loadReducer = (state = { state: "working" }, action) => {
         isAuthenticated: false,
         error: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+export const logoutReducer = (state = { state: "working" }, action) => {
+  switch (action.type) {
+    case LOGOUT_USER_SUCCESS:
+      return {
+        success: action.payload.success,
+        message: action.payload.message
+      };
+    case LOGOUT_USER_FAILED:
+      return {
+        error: action.payload,
+      };
+      case "CLEAR_LOGGED_MESSAGE":
+      return{
+        success:false,
+        message: null,
+      }
     default:
       return state;
   }
