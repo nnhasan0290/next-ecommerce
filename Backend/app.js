@@ -5,6 +5,7 @@ import cors from "cors";
 import productRoutes from "./Routes/productRoutes.js";
 import userRoutes from "./Routes/userRoutes.js";
 import paymentRoutes from "./Routes/paymentRoutes.js";
+import adminRoutes from "./Routes/adminRoutes.js";
 import multer from "multer";
 import errorHandler from "./middlewars/error.js";
 import cookieParser from "cookie-parser";
@@ -33,6 +34,8 @@ app.use("/api", productRoutes);
 app.use("/api", userRoutes);
 
 app.use("/api", paymentRoutes);
+
+app.use("/api", adminRoutes);
 
 app.use(errorHandler);
 export default app;

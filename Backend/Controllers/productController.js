@@ -37,7 +37,7 @@ export const getAllProducts = catchAsyncError(async (req, res, nex) => {
     .categorize();
   const filtered_products = await apiFeature.products;
   const total_products = filtered_products.length;
-  await apiFeature.pagination(resultPerPage);
+   apiFeature.pagination(resultPerPage);
   const products = await apiFeature.products.clone();
 
   if (!products.length) {

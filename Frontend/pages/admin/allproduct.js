@@ -1,18 +1,18 @@
 import Head from "next/head";
 import { Fragment } from "react";
-import DashContent from "../../components/dashboard/DashContent";
+import AllProduct from "../../components/dashboard/AllProduct";
 import Sidebar from "../../components/dashboard/Sidebar";
 
 const Dashboard = () => {
   return (
     <Fragment>
       <Head>
-        <title>Admin Create Product</title>
+        <title>Admin Products</title>
         <link rel="icon" href="/logo.svg" />
       </Head>
       <main>
         <Sidebar />
-        <DashContent />
+        <AllProduct/>
       </main>
     </Fragment>
   );

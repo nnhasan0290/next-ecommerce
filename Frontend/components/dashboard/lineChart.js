@@ -32,20 +32,20 @@ export const options = {
   },
 };
 
-const labels = ["January", "February"];
+const labels = ["Initial Amount", "Amount Earned"];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: [0, 20],
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
-};
 
-export function LineChart() {
+export function LineChart({amount}) {
+  const data = {
+   labels,
+   datasets: [
+     {
+       label: "Total Amount",
+       data: [0, amount],
+       borderColor: "rgb(255, 99, 132)",
+       backgroundColor: "rgba(255, 99, 132, 0.5)",
+     },
+   ],
+  };
   return <Line options={options} data={data} />;
 }

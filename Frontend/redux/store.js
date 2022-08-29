@@ -5,6 +5,10 @@ import {
 } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import {
+  adminDeleteProductReducer,
+  adminProductReducer,
+} from "./reducers/adminReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { getOrderReducer, orderCreateReducer } from "./reducers/orderReducer";
 import {
@@ -30,7 +34,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   orderCreate: orderCreateReducer,
   getOrder: getOrderReducer,
-
+  adminProducts: adminProductReducer,
+  adminDeleteProduct: adminDeleteProductReducer,
 
   totalAmount: (state = {}, action) => {
     if (action.type === "GET_TOTAL_AMOUNT") {
