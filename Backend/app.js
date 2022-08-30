@@ -9,20 +9,20 @@ import adminRoutes from "./Routes/adminRoutes.js";
 import multer from "multer";
 import errorHandler from "./middlewars/error.js";
 import cookieParser from "cookie-parser";
-
 const app = express();
 const upload = multer();
 
 app.use(express.json());
 app.use(cookieParser());
 
-dotenv.config({ path: "Backend/config/.env" });
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  dotenv.config({ path: "Backend/config/.env" });
+}
 connectDatabase();
 
 app.use(
   cors({
-    origin:
-      "http://localhost:3000",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );

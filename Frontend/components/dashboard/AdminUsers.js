@@ -1,25 +1,28 @@
+import Sidebar from "./Sidebar.js";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getOrders } from "../../redux/actions/orderAction";
+import { useSelector, useDispatch } from "react-redux";
+import { adminAllUsers } from "../../redux/actions/adminAction.js";
 
-const AdminOrders = () => {
+const AdminUsers = () => {
   const dispatch = useDispatch();
-  const { loading, order } = useSelector((state) => state.getOrder);
+  const { users } = useSelector((state) => state.adminUsers);
+  console.log(users);
+
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(adminAllUsers());
   }, []);
   return (
     <>
       <div className=" sm:w-[80%] sm:float-right">
-        <h2 className="text-center big-heading">Orders</h2>
+        <h2 className="text-center big-heading">Users</h2>
         <div className="my-10 bg-white border shadow-3xl">
           <div className="justify-center px-10 py-3 capitalize md:flex">
-            <div className="text-center basis-1/3 md:text-start">Order Id</div>
-            <div className="text-center basis-1/3 md:text-start">Status</div>
-            <div className="text-center basis-1/3 md:text-start">amount</div>
+            <div className="text-center basis-1/3 md:text-start">User Id</div>
+            <div className="text-center basis-1/3 md:text-start">Name</div>
+            <div className="text-center basis-1/3 md:text-start">role</div>
           </div>
-          {order &&
-            order.map((each, i) => {
+          {users &&
+            users.map((each, i) => {
               return (
                 <div
                   key={i}
@@ -29,10 +32,10 @@ const AdminOrders = () => {
                     {each._id}
                   </div>
                   <div className="text-center basis-1/3 md:text-start">
-                    {each.orderStatus}
+                    {each.fname + " " + each.lname}
                   </div>
                   <div className="text-center basis-1/3 md:text-start">
-                    {each.totalPrice}
+                    {each.role}
                   </div>
                 </div>
               );
@@ -42,4 +45,4 @@ const AdminOrders = () => {
     </>
   );
 };
-export default AdminOrders;
+export default AdminUsers;

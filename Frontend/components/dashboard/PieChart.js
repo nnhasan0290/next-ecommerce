@@ -5,46 +5,49 @@ import { LineChart } from "./lineChart";
 import { useDispatch, useSelector } from "react-redux";
 import { adminAllProduct } from "../../redux/actions/adminAction";
 import { getOrders } from "../../redux/actions/orderAction";
+import { adminAllUsers } from "../../redux/actions/adminAction.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
 
 export function PieChart() {
   const dispatch = useDispatch();
   const { loading, products, success } = useSelector(
     (state) => state.adminProducts
-    );
-    const { order } = useSelector((state) => state.getOrder);
-    
-    let outOfStock = 0;
-    let totalAmount = 0;
-    order &&
+  );
+  const { order } = useSelector((state) => state.getOrder);
+  const { users } = useSelector((state) => state.adminUsers);
+
+  let outOfStock = 0;
+  let totalAmount = 0;
+  order &&
     order.forEach((each) => {
       totalAmount += each.totalPrice;
     });
-    
-    products && products.forEach((each) => {
-      if(each.stock === 0) {
-        outOfStock ++;
+
+  products &&
+    products.forEach((each) => {
+      if (each.stock === 0) {
+        outOfStock++;
       }
-    })
-    
-    const data = {
-     labels: ["Out of stock", "In stock"],
-     datasets: [
-       {
-         label: "# of Votes",
-         data: [outOfStock,products?.length - outOfStock],
-         backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
-         borderColor: ["rgba(255, 99, 132, 1)"],
-         borderWidth: 1,
-       },
-     ],
-    };
+    });
+
+  const data = {
+    labels: ["Out of stock", "In stock"],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [outOfStock, products?.length - outOfStock],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderWidth: 1,
+      },
+    ],
+  };
 
   useEffect(() => {
     dispatch(adminAllProduct());
     dispatch(getOrders());
+    dispatch(adminAllUsers());
   }, []);
   return (
     <div className="sm:w-[80%] sm:float-right">
@@ -69,10 +72,10 @@ export function PieChart() {
           Orders <br /> {order?.length}
         </a>
         <a
-          href="#"
+          href="/admin/users"
           className="bg-[#081828] text-white p-10 rounded-full w-[120px] h-[120px] flex items-center justify-center text-center mx-auto sm:mx-0 my-3 hover:bg-[#0167f3] transition duration-300"
         >
-          Users <br /> 30
+          Users <br /> {users?.length}
         </a>
       </div>
       <div className="w-[100%] m-auto sm:w-[70%] my-5">

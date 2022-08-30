@@ -5,6 +5,9 @@ import {
   GET_ALL_PRODUCT_ADMIN_FAIL,
   GET_ALL_PRODUCT_ADMIN_REQ,
   GET_ALL_PRODUCT_ADMIN_SUCCESS,
+  ADMIN_USER_REQ,
+  ADMIN_USER_SUCCESS,
+  ADMIN_USER_FAIL
 } from "../constants/adminCons";
 
 export const adminProductReducer = (state = {}, action) => {
@@ -56,3 +59,23 @@ export const adminDeleteProductReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const adminUserReducer = (state={},action) => {
+  switch(action.type){
+    case ADMIN_USER_REQ:
+    return{loading: true}
+    case ADMIN_USER_SUCCESS:
+    return{
+      loading: false,
+      users: action.payload.user,
+      success: action.payload.success
+    }
+    case ADMIN_USER_FAIL:
+    return{
+      loading: false,
+      error: action.payload,
+    }
+    default: 
+    return{...state}
+  }
+}

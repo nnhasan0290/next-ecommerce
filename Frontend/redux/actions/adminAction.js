@@ -5,6 +5,9 @@ import {
   GET_ALL_PRODUCT_ADMIN_FAIL,
   GET_ALL_PRODUCT_ADMIN_REQ,
   GET_ALL_PRODUCT_ADMIN_SUCCESS,
+  ADMIN_USER_REQ,
+  ADMIN_USER_SUCCESS,
+  ADMIN_USER_FAIL
 } from "../constants/adminCons";
 import axios from "axios";
 
@@ -38,6 +41,15 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
+export const adminAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({type:ADMIN_USER_REQ});
+    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_GITPOD_HOST}/api/admin/users`);
+    dispatch({type: ADMIN_USER_SUCCESS,payload: data});
+  } catch(error){
+    dispatch({type: ADMIN_USER_FAIL, payload: error.response.data.error});
+  }
+}
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: "CLEAR_ERRORS" });
 };

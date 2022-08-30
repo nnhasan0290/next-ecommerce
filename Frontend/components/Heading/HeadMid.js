@@ -1,5 +1,4 @@
 import {
-  HeartIcon,
   SearchIcon,
   ShoppingCartIcon,
   XIcon,
@@ -84,12 +83,6 @@ const HeadMid = () => {
         </div>
       </div>
       <div className="flex justify-end items-center space-x-3 w-full font-thin basis-1/4">
-        <div className="p-2 border transition duration-500 rounded-full hover:bg-[#1d4379] cursor-pointer relative group">
-          <HeartIcon className="h-4 transition duration-300 group-hover:text-white" />
-          <span className="absolute top-[-7px] right-[-5px] rounded-full bg-[#081828] px-[.4rem] text-white">
-            2
-          </span>
-        </div>
         <div
           onClick={visibleCartView}
           className="p-2 border rounded-full hover:bg-[#0167f3] transition duration-500 cursor-pointer relative group"

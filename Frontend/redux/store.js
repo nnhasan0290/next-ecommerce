@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import {
   adminDeleteProductReducer,
   adminProductReducer,
+  adminUserReducer
 } from "./reducers/adminReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { getOrderReducer, orderCreateReducer ,getMyOrderReducer} from "./reducers/orderReducer";
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   getMyOrder: getMyOrderReducer,
   adminProducts: adminProductReducer,
   adminDeleteProduct: adminDeleteProductReducer,
+  adminUsers: adminUserReducer,
 
   totalAmount: (state = {}, action) => {
     if (action.type === "GET_TOTAL_AMOUNT") {
